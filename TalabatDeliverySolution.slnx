@@ -11,4 +11,5 @@
     <Project Path="ECommerce.Presentation/ECommerce.Presentation.csproj" Id="b0e573df-3847-4bce-9b12-b46f4e694a45" />
     <Project Path="TalabatDelivery/Ecommerce.web.csproj" />
   </Folder>
+  <Project Path="ECommerce.Shared/ECommerce.Shared.csproj" Id="bc711ede-2ca6-4808-8a0b-9a6a9fa60669" />
 </Solution>
