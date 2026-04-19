@@ -24,7 +24,7 @@ namespace TalabatDelivery.Controllers
                 new Product(){Id = 1, Name = "test1"},
                 new Product(){Id = 1, Name = "test2"},
                 new Product(){Id = 3, Name = "test3"},
-                new Product(){ Id = 4, Name = "test4"}
+                new Product(){Id = 4, Name = "test4"}
             };
         }
     }
