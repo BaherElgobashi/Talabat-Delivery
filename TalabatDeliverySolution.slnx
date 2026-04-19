@@ -4,6 +4,9 @@
     <Project Path="ECommerce.Services.Abstraction/ECommerce.Services.Abstraction.csproj" Id="698533de-61a0-4eea-b0bc-0ca3a0fbb602" />
     <Project Path="ECommerce.Services/ECommerce.Services.csproj" Id="dc00a5b0-f2c8-4859-9932-ca59713c8f27" />
   </Folder>
+  <Folder Name="/InfrastructureLayer/">
+    <Project Path="ECommerce.Presistance/ECommerce.Presistance.csproj" Id="50722c20-c01f-4929-868e-8cd02fa69eaa" />
+  </Folder>
   <Folder Name="/PresentationLayer/">
     <Project Path="ECommerce.Presentation/ECommerce.Presentation.csproj" Id="b0e573df-3847-4bce-9b12-b46f4e694a45" />
     <Project Path="TalabatDelivery/Ecommerce.web.csproj" />
