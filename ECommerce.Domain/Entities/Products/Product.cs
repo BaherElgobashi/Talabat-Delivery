@@ -14,7 +14,21 @@ namespace ECommerce.Domain.Entities.Products
         public string PictureUrl { get; set; } = default!;
         public decimal Price { get; set; }
 
-        #region Relationships
+        #region Relationships.
+
+        // Foregin Key.
+        public int BrandId { get; set; }
+        // Navigational Property.
+        public ProductBrand ProductBrand { get; set; }
+
+
+        // Foregin Key.
+        public int TypeId { get; set; }
+
+        // Navigational Property.
+        public ProductType ProductType { get; set; }
+
+
 
 
 
