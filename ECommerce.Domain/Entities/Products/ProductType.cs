@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Domain.Entities.Products
 {
-    public class ProductType
+    public class ProductType : BaseEntity<int>
     {
-        public int Id { get; set; }
+        
         public string Name { get; set; } = default!;
 
         #region Relationship.
