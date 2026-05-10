@@ -33,7 +33,7 @@ namespace ECommerce.Presistance.Configurations.Products_Configurations
 
             builder.HasOne(X => X.ProductType)
                    .WithMany()
-                   .HasForeignKey(X => X.ProductType);
+                   .HasForeignKey(X => X.TypeId);
                     
 
         }
