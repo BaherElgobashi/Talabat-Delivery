@@ -44,6 +44,7 @@ namespace ECommerce.Presistance.Repositories
 
         public void Remove(TEntity entity)
         {
+            _dbContext.Set<TEntity>().Remove(entity);
             
         }
 
