@@ -1,5 +1,6 @@
 ﻿using ECommerce.Domain.Contracts;
 using ECommerce.Domain.Entities;
+using ECommerce.Presistance.DbContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,12 @@ namespace ECommerce.Presistance.Repositories
 {
     public class GenericRepository<TEntity, Tkey> : IGenericRepository<TEntity, Tkey> where TEntity : BaseEntity<Tkey>
     {
-        public Task<TEntity> AddAsync(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly StoreDbContext _dbContext;
 
+        public GenericRepository(StoreDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public Task<IEnumerable<TEntity>> GetAllAsync()
         {
             throw new NotImplementedException();
@@ -24,8 +26,7 @@ namespace ECommerce.Presistance.Repositories
         {
             throw new NotImplementedException();
         }
-
-        public void Remove(TEntity entity)
+        public Task<TEntity> AddAsync(TEntity entity)
         {
             throw new NotImplementedException();
         }
@@ -34,5 +35,12 @@ namespace ECommerce.Presistance.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public void Remove(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }
 }
