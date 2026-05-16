@@ -1,4 +1,5 @@
-﻿using ECommerce.Presistance.DbContexts;
+﻿using ECommerce.Domain.Contracts;
+using ECommerce.Presistance.DbContexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.web.Extensions
@@ -19,5 +20,18 @@ namespace Ecommerce.web.Extensions
             return app;
 
         }
+
+        public static WebApplication SeedDatabase(this WebApplication app)
+        {
+            using var scope = app.Services.CreateScope();
+
+            var DataInitializerService = scope.ServiceProvider.GetRequiredService<IDataInitializer>();
+
+            DataInitializerService.Initialize();
+
+            return app;
+
+        }
+
     }
 }
