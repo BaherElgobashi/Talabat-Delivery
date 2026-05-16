@@ -1,6 +1,7 @@
 ﻿using ECommerce.Domain.Contracts;
 using ECommerce.Domain.Entities;
 using ECommerce.Presistance.DbContexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace ECommerce.Presistance.Repositories
         {
             _dbContext = dbContext;
         }
-        public Task<IEnumerable<TEntity>> GetAllAsync()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Set<TEntity>().ToListAsync();
         }
 
         public Task<TEntity> GetByIdAsync(Tkey Id)
