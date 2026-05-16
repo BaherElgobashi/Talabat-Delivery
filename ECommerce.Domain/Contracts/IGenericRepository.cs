@@ -13,7 +13,7 @@ namespace ECommerce.Domain.Contracts
 
         Task <TEntity> GetByIdAsync(TKey Id);
 
-        Task<TEntity> AddAsync(TEntity entity);
+        Task AddAsync(TEntity entity);
 
         void Update(TEntity entity);
         void Remove(TEntity entity);

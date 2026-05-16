@@ -23,23 +23,25 @@ namespace ECommerce.Presistance.Repositories
             return await _dbContext.Set<TEntity>().ToListAsync();
         }
 
-        public Task<TEntity> GetByIdAsync(Tkey Id)
+        public async Task<TEntity> GetByIdAsync(Tkey Id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Set<TEntity>().FindAsync(Id);
         }
-        public Task<TEntity> AddAsync(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
+        public async  Task<TEntity> AddAsync(TEntity entity) => await _dbContext.Set<TEntity>().AddAsync(entity);
+        
+
+
+
+
 
         public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+             _dbContext.Set<TEntity>().Update(entity); 
         }
 
         public void Remove(TEntity entity)
         {
-            throw new NotImplementedException();
+            
         }
 
         
