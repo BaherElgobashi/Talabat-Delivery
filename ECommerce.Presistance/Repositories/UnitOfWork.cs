@@ -20,7 +20,17 @@ namespace ECommerce.Presistance.Repositories
         }
         public IGenericRepository<TEntity, TKey> GetGenericRepository<TEntity, TKey>() where TEntity : BaseEntity<TKey>
         {
-            throw new NotImplementedException();
+            var EntityType = typeof(TEntity);
+            if(_repositories.TryGetValue(EntityType, out object? repository))
+            {
+                return (IGenericRepository<TEntity, TKey>) repository;
+            }
+
+            var newRepo = new GenericRepository<TEntity, TKey>(_dbContext);
+
+            _repositories[EntityType] = newRepo;
+
+            return newRepo;
         }
 
         public Task<int> SaveChangesAsync()
