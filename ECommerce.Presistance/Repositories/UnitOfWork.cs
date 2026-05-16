@@ -12,6 +12,7 @@ namespace ECommerce.Presistance.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly StoreDbContext _dbContext;
+        private readonly Dictionary<Type, object> _repositories = [];
 
         public UnitOfWork(StoreDbContext dbContext)
         {
