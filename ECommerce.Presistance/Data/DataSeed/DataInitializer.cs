@@ -23,30 +23,37 @@ namespace ECommerce.Presistance.Data.DataSeed
         }
         public void Initialize()
         {
-            var HasProducts = _dbContext.Products.Any();
-
-            var HasBrands = _dbContext.ProductBrands.Any();
-
-            var HasTypes = _dbContext.ProductTypes.Any();
-
-            if (!HasBrands)
+            try
             {
-                SeedDataFromJson<ProductBrand, int>("brands.json", _dbContext.ProductBrands);
-            }
+                var HasProducts = _dbContext.Products.Any();
 
-            if(!HasTypes)
+                var HasBrands = _dbContext.ProductBrands.Any();
+
+                var HasTypes = _dbContext.ProductTypes.Any();
+
+                if (!HasBrands)
+                {
+                    SeedDataFromJson<ProductBrand, int>("brands.json", _dbContext.ProductBrands);
+                }
+
+                if (!HasTypes)
+                {
+                    SeedDataFromJson<ProductType, int>("types.json", _dbContext.ProductTypes);
+                }
+
+                _dbContext.SaveChanges();
+
+                if (!HasProducts)
+                {
+                    SeedDataFromJson<Product, int>("products.json", _dbContext.Products);
+                }
+
+                _dbContext.SaveChanges();
+            }
+            catch(Exception ex)
             {
-                SeedDataFromJson<ProductType, int>("types.json", _dbContext.ProductTypes);
+                Console.WriteLine($"Data Seeding is Failed : {ex}");
             }
-
-            _dbContext.SaveChanges();
-
-            if (!HasProducts)
-            {
-                SeedDataFromJson<Product, int>("products.json" , _dbContext.Products);
-            }
-
-            _dbContext.SaveChanges();
 
         }
 
