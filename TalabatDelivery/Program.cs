@@ -23,13 +23,32 @@ namespace TalabatDelivery
             builder.Services.AddDbContext<StoreDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            }
-            );
+            });
 
             builder.Services.AddScoped<IDataInitializer, DataInitializer>();
+
             #endregion
 
             var app = builder.Build();
+
+            #region Data Seed.
+
+            using var scope = app.Services.CreateScope();
+
+            var dbContextService = scope.ServiceProvider.GetRequiredService<StoreDbContext>();
+
+            if (dbContextService.Database.GetPendingMigrations().Any())
+            {
+                dbContextService.Database.Migrate();
+            }
+
+            var DataInitializerService = scope.ServiceProvider.GetRequiredService<IDataInitializer>();
+
+            DataInitializerService.Initialize();
+
+            #endregion
+
+            #region Configure the HTTP request pipeline.
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -49,6 +68,8 @@ namespace TalabatDelivery
 
 
             app.MapControllers();
+
+            #endregion
 
             app.Run();
         }
