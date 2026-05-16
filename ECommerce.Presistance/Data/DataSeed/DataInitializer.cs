@@ -1,5 +1,6 @@
 ﻿using ECommerce.Domain.Contracts;
 using ECommerce.Domain.Entities;
+using ECommerce.Domain.Entities.Products;
 using ECommerce.Presistance.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,14 +23,41 @@ namespace ECommerce.Presistance.Data.DataSeed
         }
         public void Intialize()
         {
-            throw new NotImplementedException();
+            var HasProducts = _dbContext.Products.Any();
+
+            var HasBrands = _dbContext.ProductBrands.Any();
+
+            var HasTypes = _dbContext.ProductTypes.Any();
+
+            if (!HasBrands)
+            {
+                SeedDataFromJson<ProductBrand, int>("brands.json", _dbContext.ProductBrands);
+            }
+
+            if(!HasTypes)
+            {
+                SeedDataFromJson<ProductType, int>("types.json", _dbContext.ProductTypes);
+            }
+
+            _dbContext.SaveChanges();
+
+            if (!HasProducts)
+            {
+                SeedDataFromJson<Product, int>("products.json" , _dbContext.Products);
+            }
+
+            _dbContext.SaveChanges();
+
         }
 
         private void SeedDataFromJson <T, TKey> (string fileName , DbSet<T> dbset) where T : BaseEntity<TKey>
         {
             var FilePath = @"..\ECommerce.Presistance\Data\DataSeed\JSON Files\" + fileName;
 
-            if (!File.Exists(FilePath)) return;
+            if (!File.Exists(FilePath))
+            {
+                throw new FileNotFoundException($"File {fileName} is not Existed.");
+            }
 
             try
             {
