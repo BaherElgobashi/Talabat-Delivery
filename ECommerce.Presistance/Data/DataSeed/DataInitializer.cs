@@ -21,7 +21,7 @@ namespace ECommerce.Presistance.Data.DataSeed
         {
             _dbContext = dbContext;
         }
-        public void Intialize()
+        public void Initialize()
         {
             var HasProducts = _dbContext.Products.Any();
 
