@@ -1,5 +1,6 @@
 ﻿using ECommerce.Domain.Contracts;
 using ECommerce.Domain.Entities;
+using ECommerce.Presistance.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,12 @@ namespace ECommerce.Presistance.Data.DataSeed
 {
     public class DataInitializer : IDataInitializer
     {
+        private readonly StoreDbContext _dbContext;
+
+        public DataInitializer(StoreDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public void Intialize()
         {
             throw new NotImplementedException();
