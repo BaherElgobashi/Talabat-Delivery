@@ -31,6 +31,8 @@ namespace ECommerce.Presistance.Data.DataSeed
 
                 var HasTypes = _dbContext.ProductTypes.Any();
 
+                if (HasProducts && HasBrands && HasTypes) return;
+
                 if (!HasBrands)
                 {
                     SeedDataFromJson<ProductBrand, int>("brands.json", _dbContext.ProductBrands);
