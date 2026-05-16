@@ -27,9 +27,12 @@ namespace ECommerce.Presistance.Repositories
         {
             return await _dbContext.Set<TEntity>().FindAsync(Id);
         }
-        public async  Task<TEntity> AddAsync(TEntity entity) => await _dbContext.Set<TEntity>().AddAsync(entity);
-        
 
+
+        public async Task AddAsync(TEntity entity)
+        {
+             await _dbContext.Set<TEntity>().AddAsync(entity);
+        }
 
 
 
