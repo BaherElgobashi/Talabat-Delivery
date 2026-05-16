@@ -1,4 +1,5 @@
 
+using Ecommerce.web.Extensions;
 using ECommerce.Domain.Contracts;
 using ECommerce.Presistance.Data.DataSeed;
 using ECommerce.Presistance.DbContexts;
@@ -33,18 +34,8 @@ namespace TalabatDelivery
 
             #region Data Seed.
 
-            using var scope = app.Services.CreateScope();
-
-            var dbContextService = scope.ServiceProvider.GetRequiredService<StoreDbContext>();
-
-            if (dbContextService.Database.GetPendingMigrations().Any())
-            {
-                dbContextService.Database.Migrate();
-            }
-
-            var DataInitializerService = scope.ServiceProvider.GetRequiredService<IDataInitializer>();
-
-            DataInitializerService.Initialize();
+            app.MigrateDatabase();
+            app.SeedDatabase();
 
             #endregion
 
