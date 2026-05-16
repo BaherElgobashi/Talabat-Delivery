@@ -1,4 +1,6 @@
 
+using ECommerce.Domain.Contracts;
+using ECommerce.Presistance.Data.DataSeed;
 using ECommerce.Presistance.DbContexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,8 @@ namespace TalabatDelivery
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            #region Add Services to the Container.
 
             // Add services to the container.
 
@@ -21,6 +25,9 @@ namespace TalabatDelivery
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             }
             );
+
+            builder.Services.AddScoped<IDataInitializer, DataInitializer>();
+            #endregion
 
             var app = builder.Build();
 
