@@ -24,7 +24,7 @@ namespace ECommerce.Presistance.Repositories
 
         public Task<int> SaveChangesAsync()
         {
-            
+            return _dbContext.SaveChangesAsync();
         }
     }
 }
