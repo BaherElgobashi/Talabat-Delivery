@@ -3,6 +3,7 @@ using Ecommerce.web.Extensions;
 using ECommerce.Domain.Contracts;
 using ECommerce.Presistance.Data.DataSeed;
 using ECommerce.Presistance.DbContexts;
+using ECommerce.Presistance.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace TalabatDelivery
@@ -27,6 +28,8 @@ namespace TalabatDelivery
             });
 
             builder.Services.AddScoped<IDataInitializer, DataInitializer>();
+
+            builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
 
             #endregion
 
