@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ECommerce.Domain.Contracts;
+using ECommerce.Domain.Entities.Products;
 using ECommerce.Services.Abstraction.Services;
 using ECommerce.Shared.DTOS.ProductDTOS;
 using System;
@@ -21,10 +22,11 @@ namespace ECommerce.Services
 
             _mapper = mapper;
         }
-        public Task<IEnumerable<BrandDTO>> GetAllBrandsAsync()
+        public async Task<IEnumerable<BrandDTO>> GetAllBrandsAsync()
         {
 
-            throw new NotImplementedException();
+            var Brands = await _unitOfWork.GetGenericRepository<ProductBrand , int>().GetAllAsync();
+            return _mapper.Map<IEnumerable<BrandDTO>>(Brands);
         }
 
         public Task<IEnumerable<ProductDTO>> GetAllProductsAsync()
