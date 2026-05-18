@@ -13,6 +13,6 @@ namespace ECommerce.Services.Abstraction.Services
 
         Task<ProductDTO> GetProductById(int id);
 
-
+        Task<BrandDTO> GetAllBrandsAsync();
     }
 }
