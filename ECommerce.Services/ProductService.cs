@@ -29,9 +29,11 @@ namespace ECommerce.Services
             return _mapper.Map<IEnumerable<BrandDTO>>(Brands);
         }
 
-        public Task<IEnumerable<ProductDTO>> GetAllProductsAsync()
+        public async Task<IEnumerable<ProductDTO>> GetAllProductsAsync()
         {
-            throw new NotImplementedException();
+            var Products = await _unitOfWork.GetGenericRepository<Product , int>().GetAllAsync();
+
+            return _mapper.Map<IEnumerable<ProductDTO>>(Products);
         }
 
         public Task<IEnumerable<TypeDTO>> GetAllTypesAsync()
