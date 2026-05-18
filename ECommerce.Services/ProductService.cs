@@ -1,4 +1,5 @@
-﻿using ECommerce.Services.Abstraction.Services;
+﻿using ECommerce.Domain.Contracts;
+using ECommerce.Services.Abstraction.Services;
 using ECommerce.Shared.DTOS.ProductDTOS;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,12 @@ namespace ECommerce.Services
 {
     public class ProductService : IProductService
     {
+        private readonly IUnitOfWork _unitOfWork;
+
+        public ProductService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
         public Task<IEnumerable<BrandDTO>> GetAllBrandsAsync()
         {
             throw new NotImplementedException();
