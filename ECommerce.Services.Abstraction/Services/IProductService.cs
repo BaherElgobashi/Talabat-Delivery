@@ -10,5 +10,7 @@ namespace ECommerce.Services.Abstraction.Services
     public interface IProductService
     {
         Task<IEnumerable<ProductDTO>> GetAllProductsAsync();
+
+        Task<ProductDTO> GetProductById(int id);
     }
 }
