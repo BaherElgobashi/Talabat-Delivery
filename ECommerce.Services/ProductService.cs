@@ -1,4 +1,5 @@
-﻿using ECommerce.Domain.Contracts;
+﻿using AutoMapper;
+using ECommerce.Domain.Contracts;
 using ECommerce.Services.Abstraction.Services;
 using ECommerce.Shared.DTOS.ProductDTOS;
 using System;
@@ -12,13 +13,17 @@ namespace ECommerce.Services
     public class ProductService : IProductService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public ProductService(IUnitOfWork unitOfWork)
+        public ProductService(IUnitOfWork unitOfWork , IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+
+            _mapper = mapper;
         }
         public Task<IEnumerable<BrandDTO>> GetAllBrandsAsync()
         {
+
             throw new NotImplementedException();
         }
 
