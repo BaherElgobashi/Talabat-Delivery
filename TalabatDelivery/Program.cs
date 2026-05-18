@@ -31,6 +31,8 @@ namespace TalabatDelivery
 
             builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
 
+            //builder.Services.AddAutoMapper(X => X.AddProfile<>);
+
             #endregion
 
             var app = builder.Build();
