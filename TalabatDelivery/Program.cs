@@ -4,6 +4,7 @@ using ECommerce.Domain.Contracts;
 using ECommerce.Presistance.Data.DataSeed;
 using ECommerce.Presistance.DbContexts;
 using ECommerce.Presistance.Repositories;
+using ECommerce.Services.MappingProfiles;
 using Microsoft.EntityFrameworkCore;
 
 namespace TalabatDelivery
@@ -31,7 +32,7 @@ namespace TalabatDelivery
 
             builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
 
-            //builder.Services.AddAutoMapper(X => X.AddProfile<>);
+            builder.Services.AddAutoMapper(X => X.AddProfile<ProductProfile>());
 
             #endregion
 
