@@ -68,7 +68,7 @@ namespace TalabatDelivery
 
             #endregion
 
-            app.Run();
+            await app.RunAsync();
         }
     }
 }
