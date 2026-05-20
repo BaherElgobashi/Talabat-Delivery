@@ -1,5 +1,6 @@
 ﻿using ECommerce.Services.Abstraction.Services;
 using ECommerce.Shared.DTOS.ProductDTOS;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,15 @@ namespace ECommerce.Presentation.Controllers
             var Products = await _productService.GetAllProductsAsync();
 
             return Ok(Products);
+        }
+
+        // Get Product By Id
+
+        public async Task<ActionResult<ProductDTO>> GetProductByIdAsync(int id)
+        {
+            var Product = await _productService.GetProductByIdAsync(id);
+
+            return Ok(Product);
         }
 
 
