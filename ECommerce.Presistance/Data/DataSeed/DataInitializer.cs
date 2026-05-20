@@ -35,22 +35,22 @@ namespace ECommerce.Presistance.Data.DataSeed
 
                 if (!HasBrands)
                 {
-                    SeedDataFromJson<ProductBrand, int>("brands.json", _dbContext.ProductBrands);
+                    await SeedDataFromJsonAsync<ProductBrand, int>("brands.json", _dbContext.ProductBrands);
                 }
 
                 if (!HasTypes)
                 {
-                    SeedDataFromJson<ProductType, int>("types.json", _dbContext.ProductTypes);
+                    await SeedDataFromJsonAsync<ProductType, int>("types.json", _dbContext.ProductTypes);
                 }
 
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
 
                 if (!HasProducts)
                 {
-                    SeedDataFromJson<Product, int>("products.json", _dbContext.Products);
+                    await SeedDataFromJsonAsync<Product, int>("products.json", _dbContext.Products);
                 }
 
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
             }
             catch(Exception ex)
             {
