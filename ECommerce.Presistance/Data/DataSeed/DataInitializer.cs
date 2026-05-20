@@ -21,15 +21,15 @@ namespace ECommerce.Presistance.Data.DataSeed
         {
             _dbContext = dbContext;
         }
-        public void Initialize()
+        public async Task InitializeAsync()
         {
             try
             {
-                var HasProducts = _dbContext.Products.Any();
+                var HasProducts = await _dbContext.Products.AnyAsync();
 
-                var HasBrands = _dbContext.ProductBrands.Any();
+                var HasBrands = await _dbContext.ProductBrands.AnyAsync();
 
-                var HasTypes = _dbContext.ProductTypes.Any();
+                var HasTypes = await _dbContext.ProductTypes.AnyAsync();
 
                 if (HasProducts && HasBrands && HasTypes) return;
 
