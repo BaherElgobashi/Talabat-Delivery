@@ -1,4 +1,5 @@
 ﻿using ECommerce.Services.Abstraction.Services;
+using ECommerce.Shared.DTOS.ProductDTOS;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,19 @@ namespace ECommerce.Presentation.Controllers
         public ProductsController(IProductService productService)
         {
             _productService = productService;
+        }
+
+        //
+
+
+
+        // Get All Brands
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<BrandDTO>>> GetAllBrandsAsync()
+        {
+            var Brands = await _productService.GetAllBrandsAsync();
+            return Ok(Brands);
         }
 
     }
