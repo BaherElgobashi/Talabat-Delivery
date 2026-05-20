@@ -11,7 +11,7 @@ namespace TalabatDelivery
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -40,8 +40,8 @@ namespace TalabatDelivery
 
             #region Data Seed.
 
-            app.MigrateDatabaseAsync();
-            app.SeedDatabase();
+            await app.MigrateDatabaseAsync();
+            await app.SeedDatabaseAsync();
 
             #endregion
 
