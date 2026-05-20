@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Presentation.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
+
     }
 }
