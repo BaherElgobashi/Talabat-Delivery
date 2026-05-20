@@ -32,13 +32,22 @@ namespace ECommerce.Presentation.Controllers
 
 
 
-        // Get All Brands
+        // Get All Brands.
         [HttpGet("brands")]
         public async Task<ActionResult<IEnumerable<BrandDTO>>> GetAllBrandsAsync()
         {
             var Brands = await _productService.GetAllBrandsAsync();
 
             return Ok(Brands);
+        }
+
+        // Get All Types.
+        [HttpGet("types")]
+        public async Task<ActionResult<IEnumerable<TypeDTO>>> GetAllTypesAsync()
+        {
+            var Types = await _productService.GetAllTypesAsync();
+
+            return Ok(Types);
         }
 
     }
