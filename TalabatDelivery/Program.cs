@@ -40,7 +40,7 @@ namespace TalabatDelivery
 
             #region Data Seed.
 
-            app.MigrateDatabase();
+            app.MigrateDatabaseAsync();
             app.SeedDatabase();
 
             #endregion
