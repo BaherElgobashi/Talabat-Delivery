@@ -21,13 +21,13 @@ namespace Ecommerce.web.Extensions
 
         }
 
-        public static WebApplication SeedDatabase(this WebApplication app)
+        public static async Task<WebApplication> SeedDatabase(this WebApplication app)
         {
             using var scope = app.Services.CreateScope();
 
             var DataInitializerService = scope.ServiceProvider.GetRequiredService<IDataInitializer>();
 
-            DataInitializerService.Initialize();
+            await DataInitializerService.InitializeAsync();
 
             return app;
 
