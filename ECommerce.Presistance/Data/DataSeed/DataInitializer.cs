@@ -59,7 +59,7 @@ namespace ECommerce.Presistance.Data.DataSeed
 
         }
 
-        private void SeedDataFromJson <T, TKey> (string fileName , DbSet<T> dbset) where T : BaseEntity<TKey>
+        private async Task SeedDataFromJsonAsync <T, TKey> (string fileName , DbSet<T> dbset) where T : BaseEntity<TKey>
         {
             var FilePath = @"..\ECommerce.Presistance\Data\DataSeed\JSON Files\" + fileName;
 
@@ -72,7 +72,7 @@ namespace ECommerce.Presistance.Data.DataSeed
             {
                 using var dataStream = File.OpenRead(FilePath);
 
-                var data = JsonSerializer.Deserialize<List<T>>(dataStream, new JsonSerializerOptions()
+                var data = await JsonSerializer.DeserializeAsync<List<T>>(dataStream, new JsonSerializerOptions()
                 {
                     PropertyNameCaseInsensitive = true,
                 });
