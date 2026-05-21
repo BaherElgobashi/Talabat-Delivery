@@ -72,6 +72,8 @@ namespace TalabatDelivery
 
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
+
             app.UseAuthorization();
 
 
