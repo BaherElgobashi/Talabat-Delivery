@@ -1,6 +1,12 @@
 @TalabatDelivery_HostAddress = http://localhost:5275
 
+@_certificateCheckBypass = true
+
 GET {{TalabatDelivery_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+
+
+GET {{TalabatDelivery_HostAddress}}/api/products
