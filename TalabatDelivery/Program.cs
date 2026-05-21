@@ -34,9 +34,15 @@ namespace TalabatDelivery
 
             builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
 
-            builder.Services.AddAutoMapper(X => X.AddProfile<ProductProfile>());
+            //builder.Services.AddAutoMapper(X => X.AddProfile<ProductProfile>());
+
+            builder.Services.AddAutoMapper(X=> X.LicenseKey = "" , typeof(ProductProfile).Assembly);
+
+            
 
             builder.Services.AddScoped<IProductService , ProductService>();
+
+            
 
             #endregion
 
