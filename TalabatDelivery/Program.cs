@@ -36,8 +36,9 @@ namespace TalabatDelivery
 
             //builder.Services.AddAutoMapper(X => X.AddProfile<ProductProfile>());
 
-            builder.Services.AddAutoMapper(X=> X.LicenseKey = "" , typeof(ProductProfile).Assembly);
+            //builder.Services.AddAutoMapper(X=> X.LicenseKey = "" , typeof(ProductProfile).Assembly);
 
+            builder.Services.AddAutoMapper(typeof(ServicesAssemblyReference).Assembly);
             
 
             builder.Services.AddScoped<IProductService , ProductService>();
