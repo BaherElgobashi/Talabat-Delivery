@@ -20,7 +20,22 @@ namespace ECommerce.Services.MappingProfiles
         }
         public string Resolve(Product source, ProductDTO destination, string destMember, ResolutionContext context)
         {
-            
+            if (string.IsNullOrEmpty(source.PictureUrl))
+                return string.Empty;
+
+            if (source.PictureUrl.StartsWith("http"))
+                return source.PictureUrl;
+
+            var BaseUrl = _configuration.GetSection("URLs")["BaseUrl"];
+
+            if(string.IsNullOrEmpty(BaseUrl))
+                return string.Empty;
+
+            var picUrl = $"{BaseUrl}{source.PictureUrl}";
+
+            return picUrl;
+
+
         }
     }
 }
