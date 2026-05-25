@@ -16,8 +16,4 @@
     <ProjectReference Include="..\ECommerce.Services.Abstraction\ECommerce.Services.Abstraction.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Specifications\" />
-  </ItemGroup>
-
 </Project>
