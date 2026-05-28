@@ -20,10 +20,12 @@ namespace ECommerce.Presistance
             {
                 if (specifications.IncludeExpressions is not null && specifications.IncludeExpressions.Any())
                 {
-                    foreach (var IncludeExp in specifications.IncludeExpressions)
-                    {
-                        Query = Query.Include(IncludeExp);
-                    }
+                    //foreach (var IncludeExp in specifications.IncludeExpressions)
+                    //{
+                    //    Query = Query.Include(IncludeExp);
+                    //}
+
+                    Query = specifications.IncludeExpressions.Aggregate(Query , (CurrentQuery , IncludeExp) => CurrentQuery.Include(IncludeExp));
                 }
 
             }
