@@ -23,6 +23,24 @@ namespace ECommerce.Presistance.Repositories
             return await _dbContext.Set<TEntity>().ToListAsync();
         }
 
+        public async Task<IEnumerable<TEntity>> GetAllAsync(ISpecifications<TEntity, Tkey> specifications)
+        {
+            IQueryable<TEntity> Query = _dbContext.Set<TEntity>();
+
+            if(specifications is not null )
+            {
+                if( specifications.IncludeExpressions is not null && specifications.IncludeExpressions.Any())
+                {
+                    foreach(var IncludeExp in specifications.IncludeExpressions)
+                    {
+                        Query = Query.Include(IncludeExp);
+                    }
+                }
+               
+            }
+            return await Query.ToListAsync();
+        }
+
         public async Task<TEntity> GetByIdAsync(Tkey Id)
         {
             return await _dbContext.Set<TEntity>().FindAsync(Id);
