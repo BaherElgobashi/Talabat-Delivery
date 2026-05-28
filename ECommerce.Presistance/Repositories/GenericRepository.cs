@@ -26,6 +26,7 @@ namespace ECommerce.Presistance.Repositories
         public async Task<IEnumerable<TEntity>> GetAllAsync(ISpecifications<TEntity, Tkey> specifications)
         {
             var Query = SpecificationsEvaluator.CreateTEntity(_dbContext.Set<TEntity>(), specifications);
+
             return await Query.ToListAsync();
         }
 
