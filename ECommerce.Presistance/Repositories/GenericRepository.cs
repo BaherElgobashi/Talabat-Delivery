@@ -30,9 +30,14 @@ namespace ECommerce.Presistance.Repositories
             return await Query.ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(Tkey Id)
+        public async Task<TEntity?> GetByIdAsync(Tkey Id)
         {
             return await _dbContext.Set<TEntity>().FindAsync(Id);
+        }
+        public async Task<TEntity?> GetByIdAsync(ISpecifications<TEntity, Tkey> specifications)
+        {
+            var Query = SpecificationsEvaluator.CreateTEntity(_dbContext.Set<TEntity>(), specifications);
+            return await Query.FirstOrDefaultAsync();
         }
 
 
