@@ -10,10 +10,20 @@ namespace ECommerce.Services.Specifications
 {
     public class ProductWithTypeAndBrandSpecification : BaseSpecifications<Product ,int>
     {
-        public ProductWithTypeAndBrandSpecification() : base()
+
+        // Get All Products.
+        public ProductWithTypeAndBrandSpecification() : base(null)
         {
             AddInclude(P => P.ProductType);
             AddInclude(P => P.ProductBrand);
+        }
+
+        // Get Products By Id.
+
+        public ProductWithTypeAndBrandSpecification(int id ) : base(P => P.Id == id) 
+        {
+                AddInclude(P => P.ProductType);
+                AddInclude(P => P.ProductBrand);
         }
     }
 }

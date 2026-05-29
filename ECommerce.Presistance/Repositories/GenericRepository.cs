@@ -34,6 +34,7 @@ namespace ECommerce.Presistance.Repositories
         {
             return await _dbContext.Set<TEntity>().FindAsync(Id);
         }
+
         public async Task<TEntity?> GetByIdAsync(ISpecifications<TEntity, Tkey> specifications)
         {
             var Query = SpecificationsEvaluator.CreateTEntity(_dbContext.Set<TEntity>(), specifications);
