@@ -18,6 +18,7 @@ namespace ECommerce.Presistance
             var Query = EntryPoint;
             if (specifications is not null)
             {
+                // Include Condition.
                 if (specifications.IncludeExpressions is not null && specifications.IncludeExpressions.Any())
                 {
                     //foreach (var IncludeExp in specifications.IncludeExpressions)
@@ -26,6 +27,12 @@ namespace ECommerce.Presistance
                     //}
 
                     Query = specifications.IncludeExpressions.Aggregate(Query , (CurrentQuery , IncludeExp) => CurrentQuery.Include(IncludeExp));
+                }
+
+                // Criteria Condition.
+                if (specifications.Criteria is not null)
+                {
+                    Query = Query.Where(specifications.Criteria);
                 }
 
             }
