@@ -30,7 +30,7 @@ namespace ECommerce.Services
             return _mapper.Map<IEnumerable<BrandDTO>>(Brands);
         }
 
-        public async Task<IEnumerable<ProductDTO>> GetAllProductsAsync()
+        public async Task<IEnumerable<ProductDTO>> GetAllProductsAsync( int? BrandId , int? TypeId)
         {
             var Spec = new ProductWithTypeAndBrandSpecification();
 
