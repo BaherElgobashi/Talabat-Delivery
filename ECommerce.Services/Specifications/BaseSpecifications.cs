@@ -27,10 +27,21 @@ namespace ECommerce.Services.Specifications
         // Criteria Implementation.
         public Expression<Func<TEntity, bool>> Criteria { get; }
 
+
         protected BaseSpecifications(Expression<Func<TEntity, bool>> criteriaExpression)
         {
             Criteria = criteriaExpression;
-        } 
+        }
+        #endregion
+
+
+
+        #region Sorting.
+
+        public Expression<Func<TEntity, object>> OrderBy => throw new NotImplementedException();
+
+        public Expression<Func<TEntity, object>> OrderByDescending => throw new NotImplementedException();
+
         #endregion
     }
 }
