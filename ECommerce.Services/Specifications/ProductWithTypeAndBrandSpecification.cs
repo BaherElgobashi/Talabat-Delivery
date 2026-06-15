@@ -21,8 +21,8 @@ namespace ECommerce.Services.Specifications
 
         // Get All Products.
         public ProductWithTypeAndBrandSpecification(int? brandId , int? typeId) 
-            : base(P => (!brandId.HasValue || P.BrandId == brandId)
-            && (!typeId.HasValue || P.TypeId == typeId))
+            : base(P => (!brandId.HasValue || P.BrandId == brandId.Value)
+            && (!typeId.HasValue || P.TypeId == typeId.Value))
         {
             AddInclude(P => P.ProductType);
             AddInclude(P => P.ProductBrand);
