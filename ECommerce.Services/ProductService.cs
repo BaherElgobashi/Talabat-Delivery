@@ -33,7 +33,7 @@ namespace ECommerce.Services
 
         public async Task<IEnumerable<ProductDTO>> GetAllProductsAsync( ProductQueryParams queryParams)
         {
-            var Spec = new ProductWithTypeAndBrandSpecification(BrandId, TypeId);
+            var Spec = new ProductWithTypeAndBrandSpecification(queryParams);
 
             var Products = await _unitOfWork.GetGenericRepository<Product , int>().GetAllAsync(Spec);
 

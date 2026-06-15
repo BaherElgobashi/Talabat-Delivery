@@ -1,5 +1,6 @@
 ﻿using ECommerce.Domain.Entities;
 using ECommerce.Domain.Entities.Products;
+using ECommerce.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,9 @@ namespace ECommerce.Services.Specifications
 
 
         // Get All Products.
-        public ProductWithTypeAndBrandSpecification(int? brandId , int? typeId) 
-            : base(P => (!brandId.HasValue || P.BrandId == brandId.Value)
-            && (!typeId.HasValue || P.TypeId == typeId.Value))
+        public ProductWithTypeAndBrandSpecification(ProductQueryParams queryParams) 
+            : base(P => (!queryParams.BrandId.HasValue || P.BrandId == queryParams.BrandId.Value)
+            && (!queryParams.TypeId.HasValue || P.TypeId == queryParams.TypeId.Value))
         {
             AddInclude(P => P.ProductType);
             AddInclude(P => P.ProductBrand);
