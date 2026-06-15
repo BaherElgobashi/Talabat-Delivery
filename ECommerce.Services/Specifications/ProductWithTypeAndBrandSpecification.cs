@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Services.Specifications
 {
-    public class ProductWithTypeAndBrandSpecification : BaseSpecifications<Product ,int>
+    public class ProductWithTypeAndBrandSpecification : BaseSpecifications<Product, int>
     {
 
         // Get All Products.
@@ -21,9 +21,12 @@ namespace ECommerce.Services.Specifications
 
 
         // Get All Products.
-        public ProductWithTypeAndBrandSpecification(ProductQueryParams queryParams) 
+        public ProductWithTypeAndBrandSpecification(ProductQueryParams queryParams)
             : base(P => (!queryParams.BrandId.HasValue || P.BrandId == queryParams.BrandId.Value)
-            && (!queryParams.TypeId.HasValue || P.TypeId == queryParams.TypeId.Value))
+            && (!queryParams.TypeId.HasValue || P.TypeId == queryParams.TypeId.Value)
+            && (string.IsNullOrEmpty(queryParams.Search) || P.Name.ToLower().Contains(queryParams.Search.ToLower()))
+            )
+
         {
             AddInclude(P => P.ProductType);
             AddInclude(P => P.ProductBrand);
