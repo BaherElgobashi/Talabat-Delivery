@@ -12,12 +12,17 @@ namespace ECommerce.Services.Specifications
     public abstract class BaseSpecifications<TEntity, TKey> : ISpecifications<TEntity, TKey> where TEntity : BaseEntity<TKey>
     {
 
+        #region Includes.
+
         // Include Implementation.
         public ICollection<Expression<Func<TEntity, object>>> IncludeExpressions { get; } = [];
         protected void AddInclude(Expression<Func<TEntity, object>> IncludeExp)
         {
             IncludeExpressions.Add(IncludeExp);
-        }
+        } 
+        #endregion
+
+        #region Criteria.
 
         // Criteria Implementation.
         public Expression<Func<TEntity, bool>> Criteria { get; }
@@ -25,6 +30,7 @@ namespace ECommerce.Services.Specifications
         protected BaseSpecifications(Expression<Func<TEntity, bool>> criteriaExpression)
         {
             Criteria = criteriaExpression;
-        }
+        } 
+        #endregion
     }
 }
