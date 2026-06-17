@@ -30,6 +30,35 @@ namespace ECommerce.Services.Specifications
         {
             AddInclude(P => P.ProductType);
             AddInclude(P => P.ProductBrand);
+
+            // Sorting.
+
+            switch (queryParams.Sort)
+            {
+                case ProductSortingOptions.NameAsc:
+                    AddOrderBy(P => P.Name);
+                    break;
+
+                case ProductSortingOptions.NameDesc:
+                    AddOrderByDescending(P=>P.Name);
+                    break;
+
+                case ProductSortingOptions.PriceAsc:
+                    AddOrderBy(P => P.Price);
+                    break;
+
+                case ProductSortingOptions.PriceDesc:
+                    AddOrderByDescending(P => P.Price);
+                    break;
+
+                default:
+                    AddOrderBy(X => X.Id);
+                    break;
+
+
+            }
+
+
         }
 
         // Get Products By Id.
