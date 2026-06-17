@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Shared
 {
-    public enum ProductSortOptions
+    public enum ProductSortingOptions
     {
         NameAsc = 1,
         NameDesc = 2,
