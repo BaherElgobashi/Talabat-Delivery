@@ -41,7 +41,11 @@ namespace ECommerce.Services
 
             var CountOfReturnedData = DataToReturn.Count();
 
-            return new PaginatedResult<ProductDTO>(queryParams.PageIndex , CountOfReturnedData,0 , DataToReturn);
+            var CountSpec = new ProductCountSpecifications(queryParams);
+
+            var CountOfAllProducts = await  _unitOfWork.GetGenericRepository<Product, int>().CountAsync(CountSpec);
+
+            return new PaginatedResult<ProductDTO>(queryParams.PageIndex , CountOfReturnedData, CountOfAllProducts, DataToReturn);
         }
 
         public async Task<IEnumerable<TypeDTO>> GetAllTypesAsync()
