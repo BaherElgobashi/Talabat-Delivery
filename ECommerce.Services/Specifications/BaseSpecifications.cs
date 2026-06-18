@@ -53,5 +53,15 @@ namespace ECommerce.Services.Specifications
         }
 
         #endregion
+
+
+
+        #region Pagniation.
+        public int Skip => throw new NotImplementedException();
+
+        public int Take => throw new NotImplementedException();
+
+        public bool IsPaginated => throw new NotImplementedException();
+        #endregion
     }
 }
