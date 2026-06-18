@@ -45,6 +45,11 @@ namespace ECommerce.Presistance
                     Query = Query.OrderByDescending(specifications.OrderByDescending);
                 }
 
+                if (specifications.IsPaginated)
+                {
+                    Query = Query.Skip(specifications.Skip).Take(specifications.Take);
+                }
+
             }
             return Query;
         }
