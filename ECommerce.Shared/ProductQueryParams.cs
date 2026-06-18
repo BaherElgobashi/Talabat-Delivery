@@ -45,8 +45,11 @@ namespace ECommerce.Shared
                 if(value <=0 )
                     _pageSize = DefaultPageSize;
 
-                if(value > 0)
+                else if(value > 0)
                     _pageSize = MaxPageSize;
+
+                else 
+                    _pageSize = value;
 
             }
         }

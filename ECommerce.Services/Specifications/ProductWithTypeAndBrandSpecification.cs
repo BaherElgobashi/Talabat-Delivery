@@ -59,6 +59,9 @@ namespace ECommerce.Services.Specifications
             }
 
 
+
+            ApplyPagination(queryParams.PageSize , queryParams.PageIndex);
+
         }
 
         // Get Products By Id.
