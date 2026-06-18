@@ -25,7 +25,7 @@ namespace ECommerce.Presistance.Repositories
 
         public async Task<IEnumerable<TEntity>> GetAllAsync(ISpecifications<TEntity, Tkey> specifications)
         {
-            var Query = SpecificationsEvaluator.CreateTEntity(_dbContext.Set<TEntity>(), specifications);
+            var Query = SpecificationsEvaluator.CreateQuery(_dbContext.Set<TEntity>(), specifications);
 
             return await Query.ToListAsync();
         }
@@ -37,7 +37,7 @@ namespace ECommerce.Presistance.Repositories
 
         public async Task<TEntity?> GetByIdAsync(ISpecifications<TEntity, Tkey> specifications)
         {
-            var Query = SpecificationsEvaluator.CreateTEntity(_dbContext.Set<TEntity>(), specifications);
+            var Query = SpecificationsEvaluator.CreateQuery(_dbContext.Set<TEntity>(), specifications);
             return await Query.FirstOrDefaultAsync();
         }
 
@@ -61,9 +61,9 @@ namespace ECommerce.Presistance.Repositories
             
         }
 
-        public Task<int> CountAsync(ISpecifications<TEntity, Tkey> specifications)
+        public async Task<int> CountAsync(ISpecifications<TEntity, Tkey> specifications)
         {
-            throw new NotImplementedException();
+            return await SpecificationsEvaluator.CreateQuery(_dbContext.Set<TEntity>() , specifications).CountAsync();
         }
     }
 }

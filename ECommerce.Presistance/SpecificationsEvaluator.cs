@@ -12,7 +12,7 @@ namespace ECommerce.Presistance
 {
     public static class SpecificationsEvaluator
     {
-        public static IQueryable<TEntity> CreateTEntity<TEntity , TKey> (IQueryable<TEntity> EntryPoint ,
+        public static IQueryable<TEntity> CreateQuery<TEntity , TKey> (IQueryable<TEntity> EntryPoint ,
             ISpecifications<TEntity, TKey> specifications) where TEntity : BaseEntity<TKey>
         {
             var Query = EntryPoint;
