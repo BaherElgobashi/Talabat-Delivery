@@ -61,6 +61,9 @@ namespace ECommerce.Presistance.Repositories
             
         }
 
-        
+        public Task<int> CountAsync(ISpecifications<TEntity, Tkey> specifications)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
