@@ -27,5 +27,28 @@ namespace ECommerce.Shared
                 _pageIndex = (value <= 0) ? 1 : value; 
             }
         }
+
+        private const int DefaultPageSize = 5;
+
+        private const int MaxPageSize = 10;
+
+        private int _pageSize = DefaultPageSize;
+
+        public int PageSize
+        {
+            get
+            {
+                return _pageSize;
+            }
+            set
+            {
+                if(value <=0 )
+                    _pageSize = DefaultPageSize;
+
+                if(value > 0)
+                    _pageSize = MaxPageSize;
+
+            }
+        }
     }
 }
