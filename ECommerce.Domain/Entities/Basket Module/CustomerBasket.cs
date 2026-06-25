@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Domain.Entities.Basket_Module
 {
-    internal class CustomerBasket
+    public class CustomerBasket
     {
+        public string Id { get; set; } = default!; // GUID : Created from Frontend.
+
+        public ICollection<BasketItem> Items { get; set; }
     }
 }
