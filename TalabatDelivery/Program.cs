@@ -8,6 +8,7 @@ using ECommerce.Services;
 using ECommerce.Services.Abstraction.Services;
 using ECommerce.Services.MappingProfiles;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 
 namespace TalabatDelivery
 {
@@ -43,7 +44,11 @@ namespace TalabatDelivery
 
             builder.Services.AddScoped<IProductService , ProductService>();
 
-            
+            builder.Services.AddSingleton<IConnectionMultiplexer>(SP =>
+            {
+                return ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("RedisConnection"));
+            }
+            );
 
 
             
