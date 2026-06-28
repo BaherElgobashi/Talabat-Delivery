@@ -34,9 +34,9 @@ namespace ECommerce.Presistance.Repositories
             }
         }
 
-        public Task<bool> DeleteBasketAsync(string basketId)
+        public async Task<bool> DeleteBasketAsync(string basketId)
         {
-            throw new NotImplementedException();
+            return await _database.KeyDeleteAsync(basketId);
         }
 
         public Task<CustomerBasket?> GetBasketAsync(string basketId)
