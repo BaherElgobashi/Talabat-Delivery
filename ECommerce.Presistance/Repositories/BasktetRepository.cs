@@ -39,9 +39,18 @@ namespace ECommerce.Presistance.Repositories
             return await _database.KeyDeleteAsync(basketId);
         }
 
-        public Task<CustomerBasket?> GetBasketAsync(string basketId)
+        public async Task<CustomerBasket?> GetBasketAsync(string basketId)
         {
-            throw new NotImplementedException();
+            var Basket = await _database.StringGetAsync(basketId);
+
+            if (Basket.IsNullOrEmpty)
+            {
+                return null;
+            }
+            else
+            {
+                return JsonSerializer.Deserialize<CustomerBasket>(Basket!);
+            }
         }
     }
 }
