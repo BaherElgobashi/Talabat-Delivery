@@ -9,6 +9,7 @@ namespace ECommerce.Domain.Contracts
 {
     public interface IBasketRepository
     {
-        Task<CustomerBasket?> GetBasketAsync(string BasketId);
+        Task<CustomerBasket?> GetBasketAsync(string basketId);
+        Task<bool> DeleteBasketAsync(string basketId);
     }
 }
