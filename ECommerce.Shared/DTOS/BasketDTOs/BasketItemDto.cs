@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Shared.DTOS.BasketDTOs
 {
-    internal class BasketItemDto
-    {
-    }
+    public record BasketItemDTO(int Id , string ProductName , string PictureUrl , decimal Price , int Quantity);
+    
 }
