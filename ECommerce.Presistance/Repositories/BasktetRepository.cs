@@ -25,8 +25,12 @@ namespace ECommerce.Presistance.Repositories
                 (timeToLive == default) ? TimeSpan.FromDays(7) : timeToLive);
             if (IsCreatedOrUpdated)
             {
-                var Basket = await _database.StringGetAsync(basket.Id);
-                return JsonSerializer.Deserialize<CustomerBasket>(Basket!);
+                //var Basket = await _database.StringGetAsync(basket.Id);
+                //return JsonSerializer.Deserialize<CustomerBasket>(Basket!);
+
+                // Refactor to use GetBasketAsync.
+
+                return await GetBasketAsync(basket.Id);
             }
             else
             {
