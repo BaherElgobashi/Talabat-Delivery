@@ -46,7 +46,7 @@ namespace TalabatDelivery
 
             builder.Services.AddSingleton<IConnectionMultiplexer>(SP =>
             {
-                return ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("RedisConnection"));
+                return ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("RedisConnection")!);
             }
             );
 
