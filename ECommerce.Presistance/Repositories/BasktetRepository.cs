@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ECommerce.Presistance.Repositories
@@ -17,9 +18,20 @@ namespace ECommerce.Presistance.Repositories
             _database = connection.GetDatabase();
         }
 
-        public Task<CustomerBasket?> CreateOrUpdateAsync(CustomerBasket basket, TimeSpan timeToLive = default)
+        public async Task<CustomerBasket?> CreateOrUpdateAsync(CustomerBasket basket, TimeSpan timeToLive = default)
         {
-            throw new NotImplementedException();
+            var JsonBasket = JsonSerializer.Serialize(basket);
+            var IsCreatedOrUpdated = await _database.StringSetAsync(basket.Id , JsonBasket ,
+                (timeToLive == default) ? TimeSpan.FromDays(7) : timeToLive);
+            if (IsCreatedOrUpdated)
+            {
+                var Basket = await _database.StringGetAsync(basket.Id);
+                return JsonSerializer.Deserialize<CustomerBasket>(Basket!);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Task<bool> DeleteBasketAsync(string basketId)
