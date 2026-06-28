@@ -11,9 +11,10 @@ namespace ECommerce.Presistance.Repositories
 {
     public class BasktetRepository : IBasketRepository
     {
+        private readonly IDatabase _database;
         public BasktetRepository(IConnectionMultiplexer connection)
         {
-            
+            _database = connection.GetDatabase();
         }
 
         public Task<CustomerBasket?> CreateOrUpdateAsync(CustomerBasket basket, TimeSpan timeToLive = default)
