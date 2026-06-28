@@ -43,6 +43,8 @@ namespace TalabatDelivery
 
             builder.Services.AddScoped<IProductService , ProductService>();
 
+            
+
 
             
 
