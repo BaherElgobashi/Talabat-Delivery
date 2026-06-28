@@ -1,5 +1,6 @@
 ﻿using ECommerce.Domain.Contracts;
 using ECommerce.Domain.Entities.Basket_Module;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,10 @@ namespace ECommerce.Presistance.Repositories
 {
     public class BasktetRepository : IBasketRepository
     {
-
+        public BasktetRepository(IConnectionMultiplexer connection)
+        {
+            
+        }
 
         public Task<CustomerBasket?> CreateOrUpdateAsync(CustomerBasket basket, TimeSpan timeToLive = default)
         {
