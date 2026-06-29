@@ -10,5 +10,6 @@ namespace ECommerce.Services.Abstraction.Services
     public interface IBasketService
     {
         Task<BasketDTO> GetBasketAsync(string id);
+        Task<BasketDTO> CreateOrUpdateBasketAsync(BasketDTO basket);
     }
 }
