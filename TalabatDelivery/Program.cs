@@ -50,6 +50,8 @@ namespace TalabatDelivery
             }
             );
 
+            builder.Services.AddScoped<IBasketService , BasketService>();
+
 
             
 
