@@ -1,4 +1,5 @@
-﻿using ECommerce.Services.Abstraction.Services;
+﻿using AutoMapper;
+using ECommerce.Services.Abstraction.Services;
 using ECommerce.Shared.DTOS.BasketDTOs;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,14 @@ namespace ECommerce.Services
 {
     public class BasketService : IBasketService
     {
+        private readonly IBasketService _basketService;
+        private readonly IMapper _mapper;
+
+        public BasketService( IBasketService basketService , IMapper mapper)
+        {
+            _basketService = basketService;
+            _mapper = mapper;
+        }
         public Task<BasketDTO> CreateOrUpdateBasketAsync(BasketDTO basket)
         {
             throw new NotImplementedException();
