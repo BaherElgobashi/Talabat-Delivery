@@ -50,7 +50,7 @@ namespace TalabatDelivery
             }
             );
 
-            builder.Services.AddScoped<IBasketService , BasketService>();
+            builder.Services.AddScoped<IBasketRepository, BasktetRepository>();
 
 
             
