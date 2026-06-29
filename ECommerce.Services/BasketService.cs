@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ECommerce.Domain.Contracts;
+using ECommerce.Domain.Entities.Basket_Module;
 using ECommerce.Services.Abstraction.Services;
 using ECommerce.Shared.DTOS.BasketDTOs;
 using System;
@@ -11,17 +13,21 @@ namespace ECommerce.Services
 {
     public class BasketService : IBasketService
     {
-        private readonly IBasketService _basketService;
+        private readonly IBasketRepository _basketRepository;
         private readonly IMapper _mapper;
 
-        public BasketService( IBasketService basketService , IMapper mapper)
+        public BasketService( IBasketRepository basketRepository, IMapper mapper)
         {
-            _basketService = basketService;
+            _basketRepository = basketRepository;
             _mapper = mapper;
         }
-        public Task<BasketDTO> CreateOrUpdateBasketAsync(BasketDTO basket)
+        public async Task<BasketDTO> CreateOrUpdateBasketAsync(BasketDTO basket)
         {
-            throw new NotImplementedException();
+            var CustomerBasket = _mapper.Map<BasketDTO , CustomerBasket>(basket);
+
+            var CreatedOrUpdatedBasket = await _basketRepository.CreateOrUpdateAsync(CustomerBasket);
+
+            return _mapper.Map<CustomerBasket , BasketDTO>(CreatedOrUpdatedBasket!);
         }
 
         public Task<bool> DeleteBasketAsync(string id)
