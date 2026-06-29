@@ -11,5 +11,6 @@ namespace ECommerce.Services.Abstraction.Services
     {
         Task<BasketDTO> GetBasketAsync(string id);
         Task<BasketDTO> CreateOrUpdateBasketAsync(BasketDTO basket);
+        Task<bool> DeleteBasketAsync(string id);
     }
 }
