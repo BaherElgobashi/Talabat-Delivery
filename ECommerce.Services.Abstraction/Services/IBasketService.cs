@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECommerce.Shared.DTOS.BasketDTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace ECommerce.Services.Abstraction.Services
 {
     public interface IBasketService
     {
+        Task<BasketDTO> GetBasketAsync(string id);
     }
 }
