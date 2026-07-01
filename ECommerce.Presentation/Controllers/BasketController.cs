@@ -28,5 +28,15 @@ namespace ECommerce.Presentation.Controllers
             var Basket = await _basketService.GetBasketAsync(id);
             return Ok(Basket);
         }
+
+
+        // Post : BaseUrl/api/Basket
+        [HttpPost]
+        public async Task<ActionResult<BasketDTO>> CreateOrUpdateBasket(BasketDTO basket)
+        {
+            var Basket = await _basketService.CreateOrUpdateBasketAsync(basket);
+            return Ok(Basket);
+        }
+        
     }
 }
