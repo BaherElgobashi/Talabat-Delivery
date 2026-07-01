@@ -1,4 +1,5 @@
 ﻿using ECommerce.Services.Abstraction.Services;
+using ECommerce.Shared.DTOS.BasketDTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,15 @@ namespace ECommerce.Presentation.Controllers
         public BasketController(IBasketService basketService)
         {
             _basketService = basketService;
+        }
+
+
+        // Get : BaseUrl/api/Basket?id=
+        [HttpGet]
+        public async Task<ActionResult<BasketDTO>> GetBasket(string id)
+        {
+            var Basket = await _basketService.GetBasketAsync(id);
+            return Ok(Basket);
         }
     }
 }
