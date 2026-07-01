@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ECommerce.Services.Abstraction.Services;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace ECommerce.Presentation.Controllers
     [Route("api/[Controller]")]
     public class BasketController : ControllerBase
     {
+        private readonly IBasketService _basketService;
 
+        public BasketController(IBasketService basketService)
+        {
+            _basketService = basketService;
+        }
     }
 }
