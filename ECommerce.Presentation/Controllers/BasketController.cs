@@ -37,6 +37,14 @@ namespace ECommerce.Presentation.Controllers
             var Basket = await _basketService.CreateOrUpdateBasketAsync(basket);
             return Ok(Basket);
         }
-        
+
+        // Delete : BaseUrl/api/Basket/{id}
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<bool>> DeleteBasket(string id)
+        {
+            var Result = await _basketService.DeleteBasketAsync(id);
+            return Ok(Result);
+        }
+
     }
 }
