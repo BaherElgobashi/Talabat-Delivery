@@ -51,6 +51,7 @@ namespace TalabatDelivery
             );
 
             builder.Services.AddScoped<IBasketRepository, BasktetRepository>();
+            builder.Services.AddScoped<IBasketService , BasketService>();
 
 
             
