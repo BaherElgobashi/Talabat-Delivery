@@ -9,5 +9,9 @@ namespace ECommerce.Presentation.Attribures
 {
     public class RedisCacheAttribute : ActionFilterAttribute
     {
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            base.OnActionExecuted(context);
+        }
     }
 }
