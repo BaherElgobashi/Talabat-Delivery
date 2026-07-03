@@ -9,18 +9,14 @@ namespace ECommerce.Presentation.Attribures
 {
     public class RedisCacheAttribute : ActionFilterAttribute
     {
-        public override void OnActionExecuted(ActionExecutedContext context)
-        {
-            base.OnActionExecuted(context);
-        }
-
-        public override void OnActionExecuting(ActionExecutingContext context)
-        {
-            base.OnActionExecuting(context);
-        }
-
+        
         public override Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+
+            // Get Cache Service From DI Container.
+            // Check If Cached Data Exists.
+            // If Exists , Return Cached Data and Skip Executing of EndPoint.
+            // If Not Exists , Execute the EndPoint and Store the Result in Cache.
             return base.OnActionExecutionAsync(context, next);
         }
     }
