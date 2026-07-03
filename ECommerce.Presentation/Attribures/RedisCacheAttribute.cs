@@ -18,5 +18,10 @@ namespace ECommerce.Presentation.Attribures
         {
             base.OnActionExecuting(context);
         }
+
+        public override Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+        {
+            return base.OnActionExecutionAsync(context, next);
+        }
     }
 }
