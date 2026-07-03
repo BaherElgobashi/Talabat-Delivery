@@ -13,5 +13,10 @@ namespace ECommerce.Presentation.Attribures
         {
             base.OnActionExecuted(context);
         }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            base.OnActionExecuting(context);
+        }
     }
 }
