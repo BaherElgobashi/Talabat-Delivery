@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Presentation.Attribures
 {
-    internal class RedisCacheAttribute
+    public class RedisCacheAttribute
     {
     }
 }
