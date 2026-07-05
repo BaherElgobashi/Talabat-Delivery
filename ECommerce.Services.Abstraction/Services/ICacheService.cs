@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Services.Abstraction.Services
 {
-    internal interface ICacheService
+    public interface ICacheService
     {
+        Task<string?> GetAsync(string CacheKey);
     }
 }
