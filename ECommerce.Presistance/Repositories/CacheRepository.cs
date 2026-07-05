@@ -1,4 +1,5 @@
 ﻿using ECommerce.Domain.Contracts;
+using Microsoft.IdentityModel.Tokens;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,11 @@ namespace ECommerce.Presistance.Repositories
             _database = connection.GetDatabase();
             
         }
-        public Task<string?> GetAsync(string CacheKey)
+        public async Task<string?> GetAsync(string CacheKey)
         {
-            throw new NotImplementedException();
+            var CacheValue = await _database.StringGetAsync(CacheKey);
+
+            return CacheValue.IsNullOrEmpty ? null : CacheValue.ToString();
         }
 
         public Task SetAsync(string CacheKey, string CacheValue, TimeSpan TimeToLive)
