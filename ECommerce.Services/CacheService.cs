@@ -10,6 +10,12 @@ namespace ECommerce.Services
 {
     public class CacheService : ICacheService
     {
+        private readonly ICacheRepository _cacheRepository;
+
+        public CacheService(ICacheRepository cacheRepository)
+        {
+            _cacheRepository = cacheRepository;
+        }
         public Task<string?> GetAsync(string CacheKey)
         {
             throw new NotImplementedException();
