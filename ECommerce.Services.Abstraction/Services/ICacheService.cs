@@ -9,5 +9,6 @@ namespace ECommerce.Services.Abstraction.Services
     public interface ICacheService
     {
         Task<string?> GetAsync(string CacheKey);
+        Task SetAsync(string CacheKey , string CacheValue , TimeSpan TimeToLive);
     }
 }
