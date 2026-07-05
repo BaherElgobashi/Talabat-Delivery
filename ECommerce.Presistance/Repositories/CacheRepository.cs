@@ -1,4 +1,5 @@
 ﻿using ECommerce.Domain.Contracts;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,11 @@ namespace ECommerce.Presistance.Repositories
 {
     public class CacheRepository : ICacheRepository
     {
+        private readonly IDatabase _database;
         
-        public CacheRepository()
+        public CacheRepository(IConnectionMultiplexer connection)
         {
+            _database = connection.GetDatabase();
             
         }
         public Task<string?> GetAsync(string CacheKey)
