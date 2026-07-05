@@ -25,9 +25,9 @@ namespace ECommerce.Presistance.Repositories
             return CacheValue.IsNullOrEmpty ? null : CacheValue.ToString();
         }
 
-        public Task SetAsync(string CacheKey, string CacheValue, TimeSpan TimeToLive)
+        public async Task SetAsync(string CacheKey, string CacheValue, TimeSpan TimeToLive)
         {
-            throw new NotImplementedException();
+            await _database.StringSetAndGetAsync(CacheKey, CacheValue, TimeToLive);
         }
     }
 }
