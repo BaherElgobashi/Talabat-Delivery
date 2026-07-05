@@ -9,6 +9,11 @@ namespace ECommerce.Presistance.Repositories
 {
     public class CacheRepository : ICacheRepository
     {
+        
+        public CacheRepository()
+        {
+            
+        }
         public Task<string?> GetAsync(string CacheKey)
         {
             throw new NotImplementedException();
