@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Presistance.Repositories
 {
-    internal class CacheRepository
+    public class CacheRepository
     {
     }
 }
