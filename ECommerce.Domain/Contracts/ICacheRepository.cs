@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Domain.Contracts
 {
-    internal interface ICacheRepository
+    public interface ICacheRepository
     {
         Task<string?> GetAsync(string CacheKey);
 
