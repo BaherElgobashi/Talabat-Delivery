@@ -8,5 +8,6 @@ namespace ECommerce.Domain.Contracts
 {
     internal interface ICacheRepository
     {
+        Task<string?> GetAsync(string CacheKey);
     }
 }
