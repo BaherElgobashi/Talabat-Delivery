@@ -1,5 +1,7 @@
 <Solution>
-  <Folder Name="/Core/" />
+  <Folder Name="/Core/">
+    <Project Path="Core/ECommerce.Domain/ECommerce.Domain.csproj" Id="c17cf0be-3baa-436b-a7f1-6578342a5973" />
+  </Folder>
   <Folder Name="/Infrastructure/" />
   <Project Path="Talabat Delivery/Talabat Delivery.csproj" />
 </Solution>
