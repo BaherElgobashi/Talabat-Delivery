@@ -26,7 +26,7 @@ namespace ECommerce.Persistence.Seed
 
             if (!context.ProductBrands.Any())
             {
-                var ProductBrandData = File.ReadAllText(@"..\\Infrastructure\ECommerce.Persistence\Data\brands.json");
+                var ProductBrandData = File.ReadAllText(@"..\Infrastructure\ECommerce.Persistence\Data\brands.json");
 
                 var ProductBrands = JsonSerializer.Deserialize<List<ProductBrand>>(ProductBrandData);
 
@@ -39,19 +39,19 @@ namespace ECommerce.Persistence.Seed
 
             if (!context.ProductTypes.Any())
             {
-                var ProductTypeData = File.ReadAllText(@"..\\Infrastructure\ECommerce.Persistence\Data\types.json");
+                var ProductTypeData = File.ReadAllText(@"..\Infrastructure\ECommerce.Persistence\Data\types.json");
 
-                var ProductTypes = JsonSerializer.Deserialize<List<ProductBrand>>(ProductTypeData);
+                var ProductTypes = JsonSerializer.Deserialize<List<ProductType>>(ProductTypeData);
 
                 if (ProductTypes is not null && ProductTypes.Any())
                 {
-                    context.ProductBrands.AddRange(ProductTypes);
+                    context.ProductTypes.AddRange(ProductTypes);
                 }
             }
 
             if (!context.Products.Any())
             {
-                var ProductsData = File.ReadAllText(@"..\\Infrastructure\ECommerce.Persistence\Data\products.json");
+                var ProductsData = File.ReadAllText(@"..\Infrastructure\ECommerce.Persistence\Data\products.json");
 
                 var Products = JsonSerializer.Deserialize<List<Product>>(ProductsData);
 
@@ -60,6 +60,8 @@ namespace ECommerce.Persistence.Seed
                     context.Products.AddRange(Products);
                 }
             }
+
+            context.SaveChanges();
         }
     }
 }
