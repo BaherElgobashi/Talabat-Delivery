@@ -8,5 +8,6 @@
     <Project Path="Infrastructure/ECommerce.Persistence/ECommerce.Persistence.csproj" Id="d18a9c0b-691f-4437-9106-681758102a4e" />
     <Project Path="Infrastructure/ECommerce.Presentation/ECommerce.Presentation.csproj" Id="34d7c4a8-7ab7-4f65-b37a-18f996187c49" />
   </Folder>
+  <Project Path="ECommerce.Shared/ECommerce.Shared.csproj" Id="11ab9e5e-5bb2-47d2-8846-5af840c4e7b4" />
   <Project Path="Talabat Delivery/Talabat Delivery.csproj" />
 </Solution>
