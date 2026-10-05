@@ -1,5 +1,7 @@
 
+using ECommerce.Domain.Contratcs.Seed;
 using ECommerce.Persistence.Contexts;
+using ECommerce.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace Talabat_Delivery
@@ -23,8 +25,19 @@ namespace Talabat_Delivery
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            builder.Services.AddScoped<IDataSeeding , DataSeeding>();
 
             var app = builder.Build();
+
+            #region Data Seeding.
+
+            var Scope = app.Services.CreateScope();
+
+            var ObjectSeeding = Scope.ServiceProvider.GetRequiredService<IDataSeeding>();
+
+            ObjectSeeding.DataSeed(); 
+            #endregion
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
