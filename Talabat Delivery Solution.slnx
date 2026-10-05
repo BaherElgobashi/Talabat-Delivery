@@ -1,3 +1,4 @@
 <Solution>
+  <Folder Name="/Core/" />
   <Project Path="Talabat Delivery/Talabat Delivery.csproj" />
 </Solution>
