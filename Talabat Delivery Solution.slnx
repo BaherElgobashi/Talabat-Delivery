@@ -4,6 +4,8 @@
     <Project Path="Core/ECommerce.Domain/ECommerce.Domain.csproj" Id="c17cf0be-3baa-436b-a7f1-6578342a5973" />
     <Project Path="Core/ECommerce.Service/ECommerce.Service.csproj" Id="3291c2e1-237d-4114-9b2d-412230333c3f" />
   </Folder>
-  <Folder Name="/Infrastructure/" />
+  <Folder Name="/Infrastructure/">
+    <Project Path="Infrastructure/ECommerce.Presentation/ECommerce.Presentation.csproj" Id="34d7c4a8-7ab7-4f65-b37a-18f996187c49" />
+  </Folder>
   <Project Path="Talabat Delivery/Talabat Delivery.csproj" />
 </Solution>
