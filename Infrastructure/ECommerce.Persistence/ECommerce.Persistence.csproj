@@ -10,4 +10,8 @@
     <ProjectReference Include="..\..\Core\ECommerce.Service\ECommerce.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contexts\" />
+  </ItemGroup>
+
 </Project>
