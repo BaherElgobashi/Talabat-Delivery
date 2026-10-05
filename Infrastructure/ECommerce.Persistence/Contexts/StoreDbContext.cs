@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Persistence.Contexts
 {
-    internal class StoreDbContext
+    internal class StoreDbContext 
     {
     }
 }
