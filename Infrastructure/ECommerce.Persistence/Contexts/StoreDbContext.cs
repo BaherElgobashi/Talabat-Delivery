@@ -10,6 +10,11 @@ namespace ECommerce.Persistence.Contexts
 {
     public class StoreDbContext : DbContext
     {
+        public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options)
+        {
+            
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(StoreDbContext).Assembly);
