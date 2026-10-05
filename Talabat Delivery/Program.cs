@@ -1,4 +1,7 @@
 
+using ECommerce.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
+
 namespace Talabat_Delivery
 {
     public class Program
@@ -14,6 +17,11 @@ namespace Talabat_Delivery
             //builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<StoreDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
 
 
             var app = builder.Build();
