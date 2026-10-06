@@ -8,7 +8,7 @@ namespace Talabat_Delivery
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +35,7 @@ namespace Talabat_Delivery
 
             var ObjectSeeding = Scope.ServiceProvider.GetRequiredService<IDataSeeding>();
 
-            ObjectSeeding.DataSeedAsync(); 
+            await ObjectSeeding.DataSeedAsync(); 
 
             #endregion
 
