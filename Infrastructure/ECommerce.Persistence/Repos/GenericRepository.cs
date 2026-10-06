@@ -1,5 +1,7 @@
 ﻿using ECommerce.Domain.Contratcs.Repos;
 using ECommerce.Domain.Models;
+using ECommerce.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,27 +12,33 @@ namespace ECommerce.Persistence.Repos
 {
     public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TKey>
     {
-        public Task<IEnumerable<TEntity>> GetAllAsync()
+        private readonly StoreDbContext context;
+
+        public GenericRepository(StoreDbContext context)
         {
-            throw new NotImplementedException();
+            this.context = context;
+        }
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+           return await context.Set<TEntity>().ToListAsync();
         }
 
-        public Task<TEntity> GetById(TKey id)
+        public async Task<TEntity> GetById(TKey id)
         {
-            throw new NotImplementedException();
+            return await context.Set<TEntity>().FindAsync(id);
         }
         public void Add(TEntity entity)
         {
-            throw new NotImplementedException();
+            context.Set<TEntity>().Add(entity);
         }
         public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            context.Set<TEntity>().Update(entity);
         }
 
         public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            context.Set<TEntity>().Remove(entity);
         }
 
         
