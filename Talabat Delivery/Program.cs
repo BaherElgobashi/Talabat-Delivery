@@ -35,7 +35,7 @@ namespace Talabat_Delivery
 
             var ObjectSeeding = Scope.ServiceProvider.GetRequiredService<IDataSeeding>();
 
-            ObjectSeeding.DataSeed(); 
+            ObjectSeeding.DataSeedAsync(); 
 
             #endregion
 
