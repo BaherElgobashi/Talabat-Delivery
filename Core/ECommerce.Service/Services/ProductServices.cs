@@ -1,5 +1,6 @@
 ﻿using ECommerce.Abstraction.IServices;
 using ECommerce.Domain.Contratcs.UOW;
+using ECommerce.Domain.Models.Products;
 using ECommerce.Shared.Dtos;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,13 @@ namespace ECommerce.Service.Services
         {
             this.unitOfWork = unitOfWork;
         }
-        public Task<IEnumerable<ProductDto>> GetAllProductsAsync()
+        public async Task<IEnumerable<ProductDto>> GetAllProductsAsync()
         {
-            throw new NotImplementedException();
+            var Repo = unitOfWork.GetRepository<Product,int>();
+
+            var Products = await Repo.GetAllAsync();
+
+            var Products = 
         }
 
         public Task<IEnumerable<TypeDto>> GetAllTypesAsync()
