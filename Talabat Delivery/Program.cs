@@ -1,7 +1,9 @@
 
 using ECommerce.Domain.Contratcs.Seed;
+using ECommerce.Domain.Contratcs.UOW;
 using ECommerce.Persistence.Contexts;
 using ECommerce.Persistence.Seed;
+using ECommerce.Persistence.UOW;
 using Microsoft.EntityFrameworkCore;
 
 namespace Talabat_Delivery
@@ -26,6 +28,7 @@ namespace Talabat_Delivery
             });
 
             builder.Services.AddScoped<IDataSeeding , DataSeeding>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
 
