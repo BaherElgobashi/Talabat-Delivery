@@ -34,7 +34,7 @@ namespace Talabat_Delivery
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            builder.Services.AddAutoMapper(m => m.AddProfile(new ProjectProfile()));
+            builder.Services.AddAutoMapper(m => m.AddProfile(new ProjectProfile(builder.Configuration)));
 
             builder.Services.AddScoped<IServiceManager,ServiceManager>();
 
