@@ -1,4 +1,5 @@
-﻿using ECommerce.Abstraction.IServices;
+﻿using AutoMapper;
+using ECommerce.Abstraction.IServices;
 using ECommerce.Domain.Contratcs.UOW;
 using ECommerce.Domain.Models.Products;
 using ECommerce.Shared.Dtos;
@@ -13,10 +14,12 @@ namespace ECommerce.Service.Services
     public class ProductServices : IProductServices
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-        public ProductServices(IUnitOfWork unitOfWork)
+        public ProductServices(IUnitOfWork unitOfWork , IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
         public async Task<IEnumerable<ProductDto>> GetAllProductsAsync()
         {
@@ -24,23 +27,43 @@ namespace ECommerce.Service.Services
 
             var Products = await Repo.GetAllAsync();
 
-            var Products = 
+            var ProductDto = mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(Products);
+
+            return ProductDto;
         }
 
-        public Task<IEnumerable<TypeDto>> GetAllTypesAsync()
+        public async Task<IEnumerable<TypeDto>> GetAllTypesAsync()
         {
-            throw new NotImplementedException();
+            var Repo = unitOfWork.GetRepository<ProductType , int>();
+
+            var Types = await Repo.GetAllAsync();
+
+            var TypesDto = mapper.Map<IEnumerable<ProductType> , IEnumerable<TypeDto>>(Types);
+
+            return TypesDto;
         }
-        public Task<IEnumerable<BrandDto>> GetAllBrandsAsync()
+        public async Task<IEnumerable<BrandDto>> GetAllBrandsAsync()
         {
-            throw new NotImplementedException();
+            var Repo = unitOfWork.GetRepository<ProductBrand , int>();
+
+            var Brands = await Repo.GetAllAsync();
+
+            var BrandsDto = mapper.Map<IEnumerable<ProductBrand> , IEnumerable<BrandDto>>(Brands);
+
+            return BrandsDto;
         }
 
         
 
-        public Task<ProductDto> GetProductById(int id)
+        public async Task<ProductDto> GetProductByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var Repo = unitOfWork.GetRepository<Product, int>();
+
+            var Product = await Repo.GetByIdAsync(id);
+
+            var ProductDto = mapper.Map<Product, ProductDto>(Product);
+
+            return ProductDto;
         }
     }
 }

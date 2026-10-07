@@ -11,7 +11,7 @@ namespace ECommerce.Domain.Contratcs.Repos
     {
         Task<IEnumerable<TEntity>> GetAllAsync();
 
-        Task<TEntity> GetById(TKey id);
+        Task<TEntity> GetByIdAsync(TKey id);
 
         void Add(TEntity entity);
 

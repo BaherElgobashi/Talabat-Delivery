@@ -23,7 +23,7 @@ namespace ECommerce.Persistence.Repos
            return await context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<TEntity> GetById(TKey id)
+        public async Task<TEntity> GetByIdAsync(TKey id)
         {
             return await context.Set<TEntity>().FindAsync(id);
         }
