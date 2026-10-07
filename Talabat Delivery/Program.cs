@@ -62,6 +62,8 @@ namespace Talabat_Delivery
 
             app.UseAuthorization();
 
+            app.UseStaticFiles();
+
 
             app.MapControllers();
 
