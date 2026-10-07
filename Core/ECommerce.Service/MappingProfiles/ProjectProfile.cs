@@ -16,7 +16,7 @@ namespace ECommerce.Service.MappingProfiles
             CreateMap<Product, ProductDto>()
                 .ForMember(dist => dist.BrandName, options => options.MapFrom(src => src.Brand.Name))
                 .ForMember(dist => dist.TypeName, options => options.MapFrom(src => src.Type.Name))
-                .ForMember(dist => dist.PictureUrl, options => options.MapFrom(src => $"https://localhost:7119/{src.PictureUrl}"));
+                .ForMember(dist => dist.PictureUrl, options => options.MapFrom(new PictureUrlResolver()));
 
             CreateMap<ProductBrand, BrandDto>();
 
