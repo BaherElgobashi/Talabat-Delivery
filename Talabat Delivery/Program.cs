@@ -4,6 +4,7 @@ using ECommerce.Domain.Contratcs.UOW;
 using ECommerce.Persistence.Contexts;
 using ECommerce.Persistence.Seed;
 using ECommerce.Persistence.UOW;
+using ECommerce.Service.MappingProfiles;
 using Microsoft.EntityFrameworkCore;
 
 namespace Talabat_Delivery
@@ -28,7 +29,10 @@ namespace Talabat_Delivery
             });
 
             builder.Services.AddScoped<IDataSeeding , DataSeeding>();
+
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            builder.Services.AddAutoMapper(m => m.AddProfile(new ProjectProfile()));
 
             var app = builder.Build();
 
