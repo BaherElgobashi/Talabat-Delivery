@@ -1,4 +1,5 @@
 ﻿using ECommerce.Abstraction.IServices;
+using ECommerce.Domain.Contratcs.UOW;
 using ECommerce.Shared.Dtos;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,12 @@ namespace ECommerce.Service.Services
 {
     public class ProductServices : IProductServices
     {
-        public Task<IEnumerable<BrandDto>> GetAllBrandsAsync()
-        {
-            throw new NotImplementedException();
-        }
+        private readonly IUnitOfWork unitOfWork;
 
+        public ProductServices(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
         public Task<IEnumerable<ProductDto>> GetAllProductsAsync()
         {
             throw new NotImplementedException();
@@ -24,6 +26,12 @@ namespace ECommerce.Service.Services
         {
             throw new NotImplementedException();
         }
+        public Task<IEnumerable<BrandDto>> GetAllBrandsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        
 
         public Task<ProductDto> GetProductById(int id)
         {
