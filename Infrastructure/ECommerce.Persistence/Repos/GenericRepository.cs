@@ -52,9 +52,12 @@ namespace ECommerce.Persistence.Repos
             return query;
         }
 
-        public Task<TEntity> GetByIdWithSpecificationAsync(ISpecification<TEntity, TKey> specification)
+        public async Task<TEntity> GetByIdWithSpecificationAsync(ISpecification<TEntity, TKey> specification)
         {
-            throw new NotImplementedException();
+            var baseQuery = context.Set<TEntity>();
+
+            return await SpecificationEvaluator.CreateQuery(baseQuery, specification).FirstOrDefaultAsync();
+           
         }
     }
 }

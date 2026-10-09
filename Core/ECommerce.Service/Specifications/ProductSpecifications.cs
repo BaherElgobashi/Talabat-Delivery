@@ -12,7 +12,7 @@ namespace ECommerce.Service.Specifications
         public ProductSpecifications(): base(null)
         {
             AddIncludes(p => p.Brand);
-            AddIncludes(p => p.TypeId);
+            AddIncludes(p => p.Type);
         }
     }
 }
