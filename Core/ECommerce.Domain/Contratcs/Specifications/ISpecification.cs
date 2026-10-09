@@ -15,6 +15,6 @@ namespace ECommerce.Domain.Contratcs.Specifications
         Expression<Func<TEntity,bool>> Criteria { get; }
 
         // Includes.
-        Expression<Func<TEntity , object>>Includes  { get; }
+        List<Expression<Func<TEntity , object>>>Includes  { get; }
     }
 }
