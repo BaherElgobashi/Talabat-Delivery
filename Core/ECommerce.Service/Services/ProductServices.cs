@@ -2,6 +2,7 @@
 using ECommerce.Abstraction.IServices;
 using ECommerce.Domain.Contratcs.UOW;
 using ECommerce.Domain.Models.Products;
+using ECommerce.Service.Specifications;
 using ECommerce.Shared.Dtos;
 using System;
 using System.Collections.Generic;
@@ -21,17 +22,33 @@ namespace ECommerce.Service.Services
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
+
+        // old one with no includes
+        //public async Task<IEnumerable<ProductDto>> GetAllProductsAsync()
+        //{
+        //    var Repo = unitOfWork.GetRepository<Product,int>();
+
+            
+
+        //    var Products = await Repo.GetAllAsync();
+
+        //    var ProductDto = mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(Products);
+
+        //    return ProductDto;
+        //}
+
         public async Task<IEnumerable<ProductDto>> GetAllProductsAsync()
         {
             var Repo = unitOfWork.GetRepository<Product,int>();
 
-            var Products = await Repo.GetAllAsync();
+            var Spec = new ProductSpecifications();
+
+            var Products = await Repo.GetAllWithSpecificationAsync(Spec);
 
             var ProductDto = mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(Products);
 
             return ProductDto;
         }
-
         public async Task<IEnumerable<TypeDto>> GetAllTypesAsync()
         {
             var Repo = unitOfWork.GetRepository<ProductType , int>();
