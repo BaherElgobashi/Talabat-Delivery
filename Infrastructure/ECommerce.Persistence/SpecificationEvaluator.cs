@@ -30,7 +30,7 @@ namespace ECommerce.Persistence
                 {
                     foreach (var include in specification.Includes)
                     {
-                        query.Include(include);
+                        query = query.Include(include);
                     }
 
                     //both has the same peroformance using foreach or aggregate method but the for each is more readable.

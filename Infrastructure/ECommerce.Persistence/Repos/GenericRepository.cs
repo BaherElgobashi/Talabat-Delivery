@@ -1,4 +1,5 @@
 ﻿using ECommerce.Domain.Contratcs.Repos;
+using ECommerce.Domain.Contratcs.Specifications;
 using ECommerce.Domain.Models;
 using ECommerce.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -41,8 +42,19 @@ namespace ECommerce.Persistence.Repos
             context.Set<TEntity>().Remove(entity);
         }
 
-        
+        public async Task<IEnumerable<TEntity>> GetAllWithSpecificationAsync(ISpecification<TEntity, TKey> specification)
+        {
+            var baseQuery = context.Set<TEntity>().AsQueryable();
 
-        
+            //Using SpecificationEvaluator to build the query based on the specifications passed.
+            var query =  await SpecificationEvaluator.CreateQuery(baseQuery, specification).ToListAsync();
+
+            return query;
+        }
+
+        public Task<TEntity> GetByIdWithSpecificationAsync(ISpecification<TEntity, TKey> specification)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
