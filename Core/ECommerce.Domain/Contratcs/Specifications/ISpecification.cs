@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Domain.Contratcs.ISpecifications
+namespace ECommerce.Domain.Contratcs.Specifications
 {
     //store the different parts of the query
     public interface ISpecification <TEntity , TKey> where TEntity : BaseEntity<TKey>
@@ -14,7 +14,7 @@ namespace ECommerce.Domain.Contratcs.ISpecifications
         // Where Condition.
         Expression<Func<TEntity,bool>> Criteria { get; }
 
-        // Includes
+        // Includes.
         Expression<Func<TEntity , object>>Includes  { get; }
     }
 }
