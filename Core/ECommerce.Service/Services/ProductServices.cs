@@ -70,13 +70,25 @@ namespace ECommerce.Service.Services
             return BrandsDto;
         }
 
-        
+
+        // GetById With No Includes.
+        //public async Task<ProductDto> GetProductByIdAsync(int id)
+        //{
+        //    var Repo = unitOfWork.GetRepository<Product, int>();
+
+        //    var Product = await Repo.GetByIdAsync(id);
+
+        //    var ProductDto = mapper.Map<Product, ProductDto>(Product);
+
+        //    return ProductDto;
+        //}
 
         public async Task<ProductDto> GetProductByIdAsync(int id)
         {
             var Repo = unitOfWork.GetRepository<Product, int>();
+            var spec = new ProductSpecifications(id);
 
-            var Product = await Repo.GetByIdAsync(id);
+            var Product = await Repo.GetByIdWithSpecificationAsync(spec);
 
             var ProductDto = mapper.Map<Product, ProductDto>(Product);
 
