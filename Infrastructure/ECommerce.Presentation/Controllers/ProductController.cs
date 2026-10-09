@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ECommerce.Presentation.Controllers
 {
     [ApiController]
-    [Route("api/product")]
+    [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
         private readonly IServiceManager serviceManager;
@@ -19,7 +19,7 @@ namespace ECommerce.Presentation.Controllers
         {
             this.serviceManager = serviceManager;
         }
-        [HttpGet("Get All Products")]
+        [HttpGet("Products")]
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetAllProducts()
         {
             var Products = await serviceManager.ProductServices.GetAllProductsAsync();
@@ -27,7 +27,7 @@ namespace ECommerce.Presentation.Controllers
             return Ok(Products);
         }
 
-        [HttpGet("Get All Brands")]
+        [HttpGet("Brands")]
         public async Task<ActionResult<IEnumerable<BrandDto>>> GetAllBrands()
         {
             var Brands = await serviceManager.ProductServices.GetAllBrandsAsync();
@@ -35,7 +35,7 @@ namespace ECommerce.Presentation.Controllers
             return Ok(Brands);
         }
 
-        [HttpGet("Get All Types")]
+        [HttpGet("Types")]
         public async Task<ActionResult<IEnumerable<TypeDto>>> GetAllTypes()
         {
             var Types = await serviceManager.ProductServices.GetAllTypesAsync();
@@ -43,11 +43,13 @@ namespace ECommerce.Presentation.Controllers
             return Ok(Types);
         }
 
-        [HttpGet("Get-Product/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto>> GetProductById(int id)
         {
             var Product = await serviceManager.ProductServices.GetProductByIdAsync(id);
             return Ok(Product);
         }
+
+
     }
 }
