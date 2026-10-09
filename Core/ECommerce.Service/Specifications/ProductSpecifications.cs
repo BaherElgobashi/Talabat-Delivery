@@ -14,5 +14,10 @@ namespace ECommerce.Service.Specifications
             AddIncludes(p => p.Brand);
             AddIncludes(p => p.Type);
         }
+        public ProductSpecifications(int id ):base(p => p.Id == id)
+        {
+            AddIncludes(p => p.Brand);
+            AddIncludes(p => p.Type);
+        }
     }
 }
