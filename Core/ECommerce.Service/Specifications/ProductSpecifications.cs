@@ -16,10 +16,12 @@ namespace ECommerce.Service.Specifications
             AddIncludes(p => p.Type);
         }
 
+        // Get All Products With BrandId and TypeId Filtration.
         public ProductSpecifications(int? BrandId, int? TypeId) : 
             base(p => (!BrandId.HasValue ||p.BrandId == BrandId) && (!TypeId.HasValue || p.TypeId == TypeId))
         {
-            
+            AddIncludes(p => p.Brand);
+            AddIncludes(p => p.Type);
         }
         public ProductSpecifications(int id ):base(p => p.Id == id)
         {
