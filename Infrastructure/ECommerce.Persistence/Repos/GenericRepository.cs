@@ -59,5 +59,12 @@ namespace ECommerce.Persistence.Repos
             return await SpecificationEvaluator.CreateQuery(baseQuery, specification).FirstOrDefaultAsync();
            
         }
+
+        public async Task<int> GetCountWithSpecificationsAsync(ISpecification<TEntity, TKey> specification)
+        {
+            var baseQuery = context.Set<TEntity>();
+            var Query =  SpecificationEvaluator.CreateQuery(baseQuery , specification);
+            return await Query.CountAsync();
+        }
     }
 }
