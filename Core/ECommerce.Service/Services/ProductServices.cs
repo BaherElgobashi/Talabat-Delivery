@@ -55,9 +55,9 @@ namespace ECommerce.Service.Services
 
             // TotalCount.
             var CountSpec = new CountProductSpecifications(productQueryParams);
-            //var Count = 
+            var Count = await Repo.GetCountWithSpecificationsAsync(CountSpec);
 
-            return new PaginationResult<ProductDto>(Size , productQueryParams.PageIndex , 0, ProductDto);
+            return new PaginationResult<ProductDto>(Size , productQueryParams.PageIndex , Count, ProductDto);
         }
         public async Task<IEnumerable<TypeDto>> GetAllTypesAsync()
         {
