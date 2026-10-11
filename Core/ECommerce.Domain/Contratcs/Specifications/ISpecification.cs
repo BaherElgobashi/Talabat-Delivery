@@ -22,5 +22,10 @@ namespace ECommerce.Domain.Contratcs.Specifications
 
         // Includes.
         List<Expression<Func<TEntity , object>>>Includes  { get; }
+
+        // Pagination.
+        int Take { get; }
+        int Skip { get; }
+        bool IsPaginated { get; set; }
     }
 }
