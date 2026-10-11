@@ -52,5 +52,22 @@ namespace ECommerce.Service.Specifications
 
         #endregion
 
+        #region Pagination.
+        public int Take { get; private set; }
+
+        public int Skip { get; private set; }
+
+        public bool IsPaginated { get;  set; }
+
+        public void ApplyPagination(int PageSize , int PageIndex)
+        {
+            IsPaginated = true;
+            Take = PageSize;
+            Skip = (PageIndex - 1) * PageSize;
+        }
+
+
+        #endregion
+
     }
 }
