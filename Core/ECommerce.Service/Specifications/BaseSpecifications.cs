@@ -59,7 +59,7 @@ namespace ECommerce.Service.Specifications
 
         public bool IsPaginated { get;  set; }
 
-        public void ApplyPagination(int PageSize , int PageIndex)
+        public void ApplyPagination(int PageIndex , int PageSize )
         {
             IsPaginated = true;
             Take = PageSize;

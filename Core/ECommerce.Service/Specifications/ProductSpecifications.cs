@@ -46,9 +46,11 @@ namespace ECommerce.Service.Specifications
 
                 default:
                     break;
+
+                
             }
 
-
+            ApplyPagination(productQueryParams.PageIndex, productQueryParams.PageSize);
         }
 
         // Get Product By Id and add Brand and Type To the Product.
