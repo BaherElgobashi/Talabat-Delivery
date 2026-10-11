@@ -24,5 +24,7 @@ namespace ECommerce.Domain.Contratcs.Repos
 
         Task<TEntity> GetByIdWithSpecificationAsync(ISpecification<TEntity, TKey> specification);
 
+        Task<int> GetCountWithSpecificationsAsync(ISpecification<TEntity, TKey> specification);
+
     }
 }

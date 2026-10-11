@@ -54,7 +54,8 @@ namespace ECommerce.Service.Services
             var Size = ProductDto.Count();
 
             // TotalCount.
-            //0
+            var CountSpec = new CountProductSpecifications(productQueryParams);
+            //var Count = 
 
             return new PaginationResult<ProductDto>(Size , productQueryParams.PageIndex , 0, ProductDto);
         }
