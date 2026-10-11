@@ -38,7 +38,7 @@ namespace ECommerce.Service.Services
         //    return ProductDto;
         //}
 
-        public async Task<IEnumerable<ProductDto>> GetAllProductsAsync(ProductQueryParams productQueryParams)
+        public async Task<PaginationResult<ProductDto>> GetAllProductsAsync(ProductQueryParams productQueryParams)
         {
             var Spec = new ProductSpecifications(productQueryParams);
 
@@ -47,9 +47,16 @@ namespace ECommerce.Service.Services
 
             var Products = await Repo.GetAllWithSpecificationAsync(Spec);
 
+            // Data.
             var ProductDto = mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(Products);
 
-            return ProductDto;
+            // PageSize.
+            var Size = ProductDto.Count();
+
+            // TotalCount.
+            //0
+
+            return new PaginationResult<ProductDto>(Size , productQueryParams.PageIndex , 0, ProductDto);
         }
         public async Task<IEnumerable<TypeDto>> GetAllTypesAsync()
         {
