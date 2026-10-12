@@ -8,6 +8,7 @@ using ECommerce.Persistence.UOW;
 using ECommerce.Service.MappingProfiles;
 using ECommerce.Service.Services;
 using Microsoft.EntityFrameworkCore;
+using Talabat_Delivery.Custom_Exception_Middleware;
 
 namespace Talabat_Delivery
 {
@@ -39,6 +40,8 @@ namespace Talabat_Delivery
             builder.Services.AddScoped<IServiceManager,ServiceManager>();
 
             var app = builder.Build();
+
+            app.UseMiddleware<CustomExceptionMiddleWare>();
 
             #region Data Seeding.
 
