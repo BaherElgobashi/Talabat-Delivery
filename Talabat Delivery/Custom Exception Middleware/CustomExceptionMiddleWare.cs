@@ -10,5 +10,17 @@
             next = Next;
             this.logger = logger;
         }
+
+        public async Task Invoke(HttpContext context)
+        {
+            try
+            {
+                await next.Invoke(context);
+            }
+            catch(Exception ex)
+            {
+                logger.LogError(ex.Message);
+            }
+        }
     }
 }
