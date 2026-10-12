@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Domain.Exceptions
 {
-    public class ProductNotFound(int Id) : NotFoundException($"Product With Id {Id} is not found")
+    public sealed class ProductNotFound(int Id) : NotFoundException($"Product With Id {Id} is not found")
     {
     }
 }
