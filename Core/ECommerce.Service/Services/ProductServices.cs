@@ -100,6 +100,11 @@ namespace ECommerce.Service.Services
 
             var Product = await Repo.GetByIdWithSpecificationAsync(spec);
 
+            if(Product is null)
+            {
+                throw new Exception();
+            }
+
             var ProductDto = mapper.Map<Product, ProductDto>(Product);
 
             return ProductDto;
