@@ -1,4 +1,6 @@
-﻿namespace Talabat_Delivery.Custom_Exception_Middleware
+﻿using ECommerce.Shared.ErrorModels;
+
+namespace Talabat_Delivery.Custom_Exception_Middleware
 {
     public class CustomExceptionMiddleWare
     {
@@ -19,7 +21,32 @@
             }
             catch(Exception ex)
             {
-                logger.LogError(ex.Message);
+                logger.LogError(ex , ex.Message);
+
+                #region Response Header.
+
+                // Set Status Code For Response.
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+                // Set Message For Response.
+                context.Response.ContentType = "application/json";
+
+
+                #endregion
+
+                #region Response Body.
+
+                // Response Object.
+                var Response = new ErrorToReturn()
+                {
+                    StatusCode = context.Response.StatusCode,
+                    Message = ex.Message
+                };
+
+                // Return Object as JSON.
+                await context.Response.WriteAsJsonAsync(Response);
+
+                #endregion
             }
         }
     }
