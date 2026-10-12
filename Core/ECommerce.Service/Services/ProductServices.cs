@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerce.Abstraction.IServices;
 using ECommerce.Domain.Contratcs.UOW;
+using ECommerce.Domain.Exceptions;
 using ECommerce.Domain.Models.Products;
 using ECommerce.Service.Specifications;
 using ECommerce.Shared.Common;
@@ -102,7 +103,7 @@ namespace ECommerce.Service.Services
 
             if(Product is null)
             {
-                throw new Exception();
+                throw new ProductNotFound(id);
             }
 
             var ProductDto = mapper.Map<Product, ProductDto>(Product);

@@ -1,4 +1,7 @@
-﻿using ECommerce.Shared.ErrorModels;
+﻿using Azure.Core;
+using ECommerce.Domain.Exceptions;
+using ECommerce.Shared.ErrorModels;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Talabat_Delivery.Custom_Exception_Middleware
 {
@@ -26,7 +29,14 @@ namespace Talabat_Delivery.Custom_Exception_Middleware
                 #region Response Header.
 
                 // Set Status Code For Response.
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                context.Response.StatusCode = ex switch 
+                {
+                    NotFoundException  => StatusCodes.Status404NotFound,
+                    _ => StatusCodes.Status500InternalServerError
+                };
+                    
+                      
+                    
 
                 // Set Message For Response.
                 context.Response.ContentType = "application/json";
