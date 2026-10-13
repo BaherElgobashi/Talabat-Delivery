@@ -21,6 +21,24 @@ namespace Talabat_Delivery.Custom_Exception_Middleware
             try
             {
                 await next.Invoke(context);
+
+                if(context.Response.StatusCode == StatusCodes.Status404NotFound)
+                {
+                    #region Response Body.
+
+                    // Response Object.
+                    var Response = new ErrorToReturn()
+                    {
+                        StatusCode = context.Response.StatusCode,
+                        Message = $"Endpoint {context.Request.Path} is not Found."
+                    };
+
+                    // Return Object as JSON.
+                    await context.Response.WriteAsJsonAsync(Response);
+
+                    #endregion
+                }
+
             }
             catch(Exception ex)
             {
