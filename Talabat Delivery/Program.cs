@@ -7,6 +7,8 @@ using ECommerce.Persistence.Seed;
 using ECommerce.Persistence.UOW;
 using ECommerce.Service.MappingProfiles;
 using ECommerce.Service.Services;
+using ECommerce.Shared.ErrorModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Talabat_Delivery.Custom_Exception_Middleware;
 
@@ -38,6 +40,25 @@ namespace Talabat_Delivery
             builder.Services.AddAutoMapper(m => m.AddProfile(new ProjectProfile(builder.Configuration)));
 
             builder.Services.AddScoped<IServiceManager,ServiceManager>();
+
+            builder.Services.Configure<ApiBehaviorOptions>((options) =>
+            {
+                options.InvalidModelStateResponseFactory = (context) =>
+                {
+                    var Errors = context.ModelState.Where(M => M.Value.Errors.Any())
+                                                   .Select(M => new ValidationError()
+                                                   {
+                                                       Fields = M.Key,
+                                                       Errors = M.Value.Errors.Select(e => e.ErrorMessage)
+                                                   });
+                    var Response = new ValidationErrorToReturn()
+                    {
+                        ValidationErrors = Errors
+                    };
+
+                    return new BadRequestObjectResult(Response);
+                };
+            });
 
             var app = builder.Build();
 
