@@ -1,27 +1,50 @@
 ﻿using ECommerce.Domain.Contratcs.Repos;
 using ECommerce.Domain.Models.Baskets;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ECommerce.Persistence.Repos
 {
     public class BasketRepository : IBasketRepository
     {
-        public Task<CustomerBasket?> GetBasketAsync(string key)
+        private readonly IConnectionMultiplexer connection;
+
+        private readonly IDatabase _database;
+
+        public BasketRepository(IConnectionMultiplexer connection)
         {
-            throw new NotImplementedException();
+            
+            _database = connection.GetDatabase();
         }
-        public Task<CustomerBasket?> CreateUpdateBasketAsync(CustomerBasket basket, TimeSpan? TimeToLive = null)
+        public async Task<CustomerBasket?> GetBasketAsync(string key)
         {
-            throw new NotImplementedException();
+            var Basket = await _database.StringGetAsync(key);
+
+            if (Basket.IsNullOrEmpty)
+                return null;
+            else
+                return JsonSerializer.Deserialize<CustomerBasket>(Basket);
+        }
+        public async Task<CustomerBasket?> CreateUpdateBasketAsync(CustomerBasket basket, TimeSpan? TimeToLive = null)
+        {
+            var JsonBasket = JsonSerializer.Serialize(basket);
+            var IsCreatedorUpdated = await _database.StringSetAsync(basket.Id , JsonBasket , TimeToLive ?? TimeSpan.FromHours(5));
+
+            if (IsCreatedorUpdated)
+                return await GetBasketAsync(basket.Id);
+            else
+                return null;
+
         }
 
-        public Task<bool> DeleteBasketAsync(string key)
+        public async Task<bool> DeleteBasketAsync(string key)
         {
-            throw new NotImplementedException();
+            return await _database.KeyDeleteAsync(key);
         }
 
         
