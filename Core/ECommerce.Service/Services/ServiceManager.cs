@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ECommerce.Abstraction.IServices;
+using ECommerce.Domain.Contratcs.Repos;
 using ECommerce.Domain.Contratcs.UOW;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,14 @@ namespace ECommerce.Service.Services
 {
 
     // Both of two ways are true.
-    public class ServiceManager(IUnitOfWork unitOfWork, IMapper mapper) : IServiceManager
+    public class ServiceManager(IUnitOfWork unitOfWork, IMapper mapper , IBasketRepository basketRepository) : IServiceManager
     {
 
         private readonly Lazy<IProductServices> LazyProductServices = new Lazy<IProductServices>(() => new ProductServices(unitOfWork, mapper));
         public IProductServices ProductServices => LazyProductServices.Value;
+
+        private readonly Lazy<IBasketService> LazyBasketService = new Lazy<IBasketService>(() => new BasketServices (basketRepository, mapper));
+        public IBasketService BasketService => LazyBasketService.Value;
     }
 
     //public class ServiceManager : IServiceManager
