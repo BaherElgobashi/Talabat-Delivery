@@ -12,6 +12,7 @@ using ECommerce.Service.Services;
 using ECommerce.Shared.ErrorModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 using Talabat_Delivery.Custom_Exception_Middleware;
 
 namespace Talabat_Delivery
@@ -63,7 +64,10 @@ namespace Talabat_Delivery
             });
 
             builder.Services.AddScoped<IBasketRepository , BasketRepository>();
-
+            builder.Services.AddSingleton<IConnectionMultiplexer>((_) =>
+            {
+                return ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("RedisConnection"));
+            });
             var app = builder.Build();
 
             app.UseMiddleware<CustomExceptionMiddleWare>();
