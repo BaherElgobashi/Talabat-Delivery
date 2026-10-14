@@ -1,8 +1,10 @@
 
 using ECommerce.Abstraction.IServices;
+using ECommerce.Domain.Contratcs.Repos;
 using ECommerce.Domain.Contratcs.Seed;
 using ECommerce.Domain.Contratcs.UOW;
 using ECommerce.Persistence.Contexts;
+using ECommerce.Persistence.Repos;
 using ECommerce.Persistence.Seed;
 using ECommerce.Persistence.UOW;
 using ECommerce.Service.MappingProfiles;
@@ -59,6 +61,8 @@ namespace Talabat_Delivery
                     return new BadRequestObjectResult(Response);
                 };
             });
+
+            builder.Services.AddScoped<IBasketRepository , BasketRepository>();
 
             var app = builder.Build();
 
