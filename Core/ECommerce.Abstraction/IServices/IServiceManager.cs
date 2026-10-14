@@ -9,6 +9,6 @@ namespace ECommerce.Abstraction.IServices
     public interface IServiceManager
     {
         public IProductServices ProductServices { get; }
-        public IBasketService BasketService { get; }
+        public IBasketService BasketServices { get; }
     }
 }
