@@ -112,5 +112,22 @@ namespace Talabat_Delivery
 
             app.Run();
         }
+
+        public static async Task SeedDatabase(WebApplication app)
+        {
+            using var scope = app.Services.CreateScope();
+            var services = scope.ServiceProvider;
+            try
+            {
+                var dbInitializer = services.GetRequiredService<IDataSeeding>();
+                await dbInitializer.DataSeedAsync();
+                await dbInitializer.IdentityInializeAsync();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+            
+        }
     }
 }
