@@ -17,9 +17,9 @@ namespace ECommerce.Persistence.Seed
     {
         private readonly StoreDbContext context;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<ApplicationUser> _roleManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public DataSeeding(StoreDbContext context , UserManager<ApplicationUser> userManager , RoleManager<ApplicationUser> roleManager)
+        public DataSeeding(StoreDbContext context , UserManager<ApplicationUser> userManager , RoleManager<IdentityRole> roleManager)
         {
             this.context = context;
             _userManager = userManager;
@@ -71,9 +71,13 @@ namespace ECommerce.Persistence.Seed
             context.SaveChanges();
         }
 
-        public Task IdentityInializeAsync()
+        public async Task IdentityInializeAsync()
         {
-            throw new NotImplementedException();
+            if (!_roleManager.Roles.Any())
+            {
+                await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                await _roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
+            }
         }
     }
 }
