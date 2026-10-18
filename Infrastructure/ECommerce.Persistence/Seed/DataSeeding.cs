@@ -106,9 +106,12 @@ namespace ECommerce.Persistence.Seed
                 await _userManager.AddToRoleAsync(User1 , "Admin");
                 await _userManager.AddToRoleAsync(User2 , "SuperAdmin");
 
-                await _storeIdentityDbContext.SaveChangesAsync();
+                
 
             }
+            
+            
+            await _storeIdentityDbContext.SaveChangesAsync();
 
 
         }
