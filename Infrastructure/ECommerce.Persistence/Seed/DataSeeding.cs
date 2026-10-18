@@ -76,42 +76,49 @@ namespace ECommerce.Persistence.Seed
 
         public async Task IdentityInializeAsync()
         {
-            if (!_roleManager.Roles.Any())
+            try
             {
-                await _roleManager.CreateAsync(new IdentityRole("Admin"));
-                await _roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
-            }
+                if (!_roleManager.Roles.Any())
+                {
+                    await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                    await _roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
+                }
 
-            if (!_userManager.Users.Any())
+                if (!_userManager.Users.Any())
+                {
+                    var User1 = new ApplicationUser()
+                    {
+                        Email = "Baher@gmail.com",
+                        DisplayName = "Baher Mohamed",
+                        PhoneNumber = "01113411677",
+                        UserName = "B.02"
+                    };
+                    var User2 = new ApplicationUser()
+                    {
+                        Email = "Asser@gmail.com",
+                        DisplayName = "Asser Mohamed",
+                        PhoneNumber = "01556564970",
+                        UserName = "NinjaMZ"
+                    };
+
+
+                    await _userManager.CreateAsync(User1);
+                    await _userManager.CreateAsync(User2);
+
+                    await _userManager.AddToRoleAsync(User1, "Admin");
+                    await _userManager.AddToRoleAsync(User2, "SuperAdmin");
+
+
+
+                }
+
+
+                await _storeIdentityDbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
             {
-                var User1 = new ApplicationUser()
-                {
-                    Email = "Baher@gmail.com",
-                    DisplayName = "Baher Mohamed",
-                    PhoneNumber = "01113411677",
-                    UserName = "B.02"
-                };
-                var User2 = new ApplicationUser()
-                {
-                    Email = "Asser@gmail.com",
-                    DisplayName = "Asser Mohamed",
-                    PhoneNumber = "01556564970",
-                    UserName = "NinjaMZ"
-                };
-
-
-                await _userManager.CreateAsync(User1);
-                await _userManager.CreateAsync(User2);
-
-                await _userManager.AddToRoleAsync(User1 , "Admin");
-                await _userManager.AddToRoleAsync(User2 , "SuperAdmin");
-
-                
-
+                throw;
             }
-            
-            
-            await _storeIdentityDbContext.SaveChangesAsync();
 
 
         }
