@@ -35,6 +35,10 @@ namespace Talabat_Delivery
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+            builder.Services.AddDbContext<StoreIdentityDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"));
+            });
 
             builder.Services.AddScoped<IDataSeeding , DataSeeding>();
 
