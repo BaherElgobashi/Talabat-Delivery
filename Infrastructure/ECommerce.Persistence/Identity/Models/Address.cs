@@ -9,6 +9,7 @@ namespace ECommerce.Persistence.Identity.Models
 {
     public class Address
     {
+        public int Id { get; set; }
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public string City { get; set; } = null!;
@@ -16,7 +17,7 @@ namespace ECommerce.Persistence.Identity.Models
         public ApplicationUser? User { get; set; }
 
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
     }
 }
