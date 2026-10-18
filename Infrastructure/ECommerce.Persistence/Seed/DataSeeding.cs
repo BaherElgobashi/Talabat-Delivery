@@ -1,6 +1,8 @@
 ﻿using ECommerce.Domain.Contratcs.Seed;
 using ECommerce.Domain.Models.Products;
 using ECommerce.Persistence.Contexts;
+using ECommerce.Persistence.Identity.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,10 +16,14 @@ namespace ECommerce.Persistence.Seed
     public class DataSeeding : IDataSeeding
     {
         private readonly StoreDbContext context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationUser> _roleManager;
 
-        public DataSeeding(StoreDbContext context)
+        public DataSeeding(StoreDbContext context , UserManager<ApplicationUser> userManager , RoleManager<ApplicationUser> roleManager)
         {
             this.context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
         public async Task DataSeedAsync()
         {
@@ -63,6 +69,11 @@ namespace ECommerce.Persistence.Seed
             }
 
             context.SaveChanges();
+        }
+
+        public Task IdentityInializeAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }
