@@ -80,15 +80,18 @@ namespace Talabat_Delivery
 
             var app = builder.Build();
 
+            // Seed the database with initial data
+            await SeedDatabase(app);
+
             app.UseMiddleware<CustomExceptionMiddleWare>();
 
             #region Data Seeding.
 
-            var Scope = app.Services.CreateScope();
+            //var Scope = app.Services.CreateScope();
 
-            var ObjectSeeding = Scope.ServiceProvider.GetRequiredService<IDataSeeding>();
+            //var ObjectSeeding = Scope.ServiceProvider.GetRequiredService<IDataSeeding>();
 
-            await ObjectSeeding.DataSeedAsync(); 
+            //await ObjectSeeding.DataSeedAsync(); 
 
             #endregion
 
@@ -121,7 +124,7 @@ namespace Talabat_Delivery
             {
                 var dbInitializer = services.GetRequiredService<IDataSeeding>();
                 await dbInitializer.DataSeedAsync();
-                await dbInitializer.IdentityInializeAsync();
+                await dbInitializer.IdentityInitializeAsync();
             }
             catch(Exception ex)
             {

@@ -74,7 +74,7 @@ namespace ECommerce.Persistence.Seed
             context.SaveChanges();
         }
 
-        public async Task IdentityInializeAsync()
+        public async Task IdentityInitializeAsync()
         {
             try
             {
