@@ -3,6 +3,7 @@ using ECommerce.Abstraction.IServices;
 using ECommerce.Domain.Contratcs.Repos;
 using ECommerce.Domain.Contratcs.Seed;
 using ECommerce.Domain.Contratcs.UOW;
+using ECommerce.Domain.Models.Identity;
 using ECommerce.Persistence.Contexts;
 using ECommerce.Persistence.Identity.Models;
 using ECommerce.Persistence.Repos;
