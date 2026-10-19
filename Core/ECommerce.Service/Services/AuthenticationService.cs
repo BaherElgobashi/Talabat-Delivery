@@ -3,8 +3,10 @@ using ECommerce.Domain.Exceptions;
 using ECommerce.Domain.Models.Identity;
 using ECommerce.Shared.Dtos.IdentityDtos;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -73,14 +75,40 @@ namespace ECommerce.Service.Services
         }
 
 
-        private Task<string> CreateTokenAsync(ApplicationUser user)
+        private async Task<string> CreateTokenAsync(ApplicationUser user)
         {
-            var Claims = new List<Claim>()
+            var UserClaims = new List<Claim>()
             {
                 new (ClaimTypes.Email , user.Email),
                 new (ClaimTypes.Name , user.UserName),
                 new (ClaimTypes.NameIdentifier , user.Id),
             };
+
+            var Roles = await userManager.GetRolesAsync(user);
+
+            foreach(var Role in Roles)
+            {
+                UserClaims.Add(new Claim(ClaimTypes.Role , Role));
+            }
+
+            var SecurityKey = "MySecurityKey";
+
+            var Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SecurityKey));
+
+            var Creds = new SigningCredentials(Key, SecurityAlgorithms.HmacSha256);
+
+            var Token = new JwtSecurityToken
+                (
+                    issuer : "MyIssuer",
+                    audience : "MyAudience",
+                    claims : UserClaims,
+                    expires : DateTime.Now.AddDays(2),
+                    signingCredentials : Creds
+
+                );
+
+            return new JwtSecurityTokenHandler().WriteToken(Token);
+
         }
 
     }
