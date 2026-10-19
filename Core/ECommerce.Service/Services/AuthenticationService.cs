@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -70,5 +71,17 @@ namespace ECommerce.Service.Services
                 throw new BadRequestException(Errors);
             }
         }
+
+
+        private Task<string> CreateTokenAsync(ApplicationUser user)
+        {
+            var Claims = new List<Claim>()
+            {
+                new (ClaimTypes.Email , user.Email),
+                new (ClaimTypes.Name , user.UserName),
+                new (ClaimTypes.NameIdentifier , user.Id),
+            };
+        }
+
     }
 }
