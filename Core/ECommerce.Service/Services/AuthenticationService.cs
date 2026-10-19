@@ -64,7 +64,10 @@ namespace ECommerce.Service.Services
             }
             else
             {
-                 
+                // Validation.
+
+                var Errors = Result.Errors.Select(e => e.Description).ToList();
+                throw new BadRequestException(Errors);
             }
         }
     }
