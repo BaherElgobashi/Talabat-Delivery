@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Domain.Exceptions
 {
-    public class UnAuthorizaedException(string Message = "Invalid Email or Password") : NotFoundException(Message)
+    public class UnAuthorizedException(string Message = "Invalid Email or Password") : NotFoundException(Message)
     {
     }
 }

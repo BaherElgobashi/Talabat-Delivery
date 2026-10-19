@@ -1,5 +1,6 @@
 ﻿using Azure.Core;
 using ECommerce.Domain.Exceptions;
+
 using ECommerce.Shared.ErrorModels;
 using Microsoft.AspNetCore.Http.HttpResults;
 
@@ -49,7 +50,9 @@ namespace Talabat_Delivery.Custom_Exception_Middleware
                 // Set Status Code For Response.
                 context.Response.StatusCode = ex switch 
                 {
+                    UnAuthorizedException => StatusCodes.Status401Unauthorized,
                     NotFoundException  => StatusCodes.Status404NotFound,
+
                     _ => StatusCodes.Status500InternalServerError
                 };
                     

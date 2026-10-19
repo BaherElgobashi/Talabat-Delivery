@@ -36,7 +36,7 @@ namespace ECommerce.Service.Services
             }
             else
             {
-                throw new UnAuthorizaedException();
+                throw new UnAuthorizedException();
             }
 
         }
