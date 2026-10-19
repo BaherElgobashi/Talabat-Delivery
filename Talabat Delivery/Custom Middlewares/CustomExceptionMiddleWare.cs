@@ -51,6 +51,7 @@ namespace Talabat_Delivery.Custom_Exception_Middleware
                 context.Response.StatusCode = ex switch 
                 {
                     UnAuthorizedException => StatusCodes.Status401Unauthorized,
+                    BadRequestException => StatusCodes.Status400BadRequest,
                     NotFoundException  => StatusCodes.Status404NotFound,
 
                     _ => StatusCodes.Status500InternalServerError
@@ -80,5 +81,13 @@ namespace Talabat_Delivery.Custom_Exception_Middleware
                 #endregion
             }
         }
+
+        private int GetBadRequestErrors(BadRequestException exception , ErrorToReturn response)
+        {
+            response.Errors = exception.Errors;
+            return StatusCodes.Status400BadRequest;
+
+        }
+
     }
 }
