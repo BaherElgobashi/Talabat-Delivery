@@ -5,7 +5,7 @@ using ECommerce.Domain.Exceptions;
 using ECommerce.Domain.Models.Products;
 using ECommerce.Service.Specifications;
 using ECommerce.Shared.Common;
-using ECommerce.Shared.Dtos;
+using ECommerce.Shared.Dtos.ProductDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

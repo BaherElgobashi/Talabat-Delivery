@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ECommerce.Domain.Models.Products;
-using ECommerce.Shared.Dtos;
+using ECommerce.Shared.Dtos.ProductDtos;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

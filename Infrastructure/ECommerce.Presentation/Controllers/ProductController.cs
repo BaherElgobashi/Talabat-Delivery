@@ -1,6 +1,6 @@
 ﻿using ECommerce.Abstraction.IServices;
 using ECommerce.Shared.Common;
-using ECommerce.Shared.Dtos;
+using ECommerce.Shared.Dtos.ProductDtos;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

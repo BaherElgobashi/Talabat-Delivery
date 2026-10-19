@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using ECommerce.Domain.Models.Baskets;
 using ECommerce.Domain.Models.Products;
-using ECommerce.Shared.Dtos;
 using ECommerce.Shared.Dtos.Basket_Dtos;
+using ECommerce.Shared.Dtos.ProductDtos;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
