@@ -47,38 +47,35 @@ namespace Talabat_Delivery.Custom_Exception_Middleware
 
                 #region Response Header.
 
+                // Response Object.
+                var Response = new ErrorToReturn()
+                {
+                    
+                    Message = ex.Message
+                };
+
                 // Set Status Code For Response.
                 context.Response.StatusCode = ex switch 
                 {
                     UnAuthorizedException => StatusCodes.Status401Unauthorized,
-                    BadRequestException => StatusCodes.Status400BadRequest,
+                    BadRequestException badRequestException => GetBadRequestErrors(badRequestException , Response),
                     NotFoundException  => StatusCodes.Status404NotFound,
-
                     _ => StatusCodes.Status500InternalServerError
                 };
-                    
-                      
+
+                Response.StatusCode = context.Response.StatusCode;      
                     
 
                 // Set Message For Response.
                 context.Response.ContentType = "application/json";
 
-
-                #endregion
-
-                #region Response Body.
-
-                // Response Object.
-                var Response = new ErrorToReturn()
-                {
-                    StatusCode = context.Response.StatusCode,
-                    Message = ex.Message
-                };
-
                 // Return Object as JSON.
                 await context.Response.WriteAsJsonAsync(Response);
 
+
                 #endregion
+
+            
             }
         }
 
