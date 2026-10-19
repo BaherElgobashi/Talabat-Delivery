@@ -1,6 +1,7 @@
 ﻿using ECommerce.Abstraction.IServices;
 using ECommerce.Shared.Common;
 using ECommerce.Shared.Dtos.ProductDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace ECommerce.Presentation.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {

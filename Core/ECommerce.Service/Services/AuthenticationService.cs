@@ -102,7 +102,7 @@ namespace ECommerce.Service.Services
 
             var Token = new JwtSecurityToken
                 (
-                    issuer : configuration.GetSection("JWTOptions")["SecurityKey"],
+                    issuer : configuration.GetSection("JWTOptions")["Issuer"],
                     audience : configuration.GetSection("JWTOptions")["Audience"],
                     claims : UserClaims,
                     expires : DateTime.Now.AddDays(2),
