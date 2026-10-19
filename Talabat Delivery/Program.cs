@@ -76,7 +76,7 @@ namespace Talabat_Delivery
                 return ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("RedisConnection"));
             });
 
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<StoreIdentityDbContext>();
+            builder.Services.AddIdentity<ECommerce.Domain.Models.Identity.ApplicationUser, IdentityRole>().AddEntityFrameworkStores<StoreIdentityDbContext>();
 
 
             var app = builder.Build();
