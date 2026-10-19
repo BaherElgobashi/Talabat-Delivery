@@ -34,7 +34,7 @@ namespace ECommerce.Service.Services
                 {
                     DisplayName = User.DisplayName,
                     Email = User.Email,
-                    Token = "Token - ToDo."
+                    Token = await CreateTokenAsync(User)
                 };
             }
             else
@@ -62,7 +62,7 @@ namespace ECommerce.Service.Services
                 {
                     Email = User.Email,
                     DisplayName = User.Email,
-                    Token = "Token - ToDo."
+                    Token = await CreateTokenAsync(User)
                 };
             }
             else
