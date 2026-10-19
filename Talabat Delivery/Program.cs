@@ -11,10 +11,13 @@ using ECommerce.Persistence.UOW;
 using ECommerce.Service.MappingProfiles;
 using ECommerce.Service.Services;
 using ECommerce.Shared.ErrorModels;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using StackExchange.Redis;
+using System.Text;
 using Talabat_Delivery.Custom_Exception_Middleware;
 
 namespace Talabat_Delivery
@@ -77,6 +80,29 @@ namespace Talabat_Delivery
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<StoreIdentityDbContext>();
 
+            builder.Services.AddAuthentication( config =>
+            {
+                config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = builder.Configuration["JWTOptions:Issuer"],
+                    ValidateAudience = true,
+                    ValidAudience = builder.Configuration["JWTOptions:Audience"],
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(
+                            builder.Configuration["JWTOptions:SecurityKey"]
+                            ?? throw new InvalidOperationException("JWT SecurityKey is not configured")
+                        )
+                    )
+
+                };
+            });
+
 
             var app = builder.Build();
 
@@ -105,11 +131,11 @@ namespace Talabat_Delivery
 
             app.UseHttpsRedirection();
 
-            
-
-            app.UseStaticFiles();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseStaticFiles();
+            
 
             app.MapControllers();
 
