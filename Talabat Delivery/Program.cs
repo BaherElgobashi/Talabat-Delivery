@@ -5,7 +5,6 @@ using ECommerce.Domain.Contratcs.Seed;
 using ECommerce.Domain.Contratcs.UOW;
 using ECommerce.Domain.Models.Identity;
 using ECommerce.Persistence.Contexts;
-using ECommerce.Persistence.Identity.Models;
 using ECommerce.Persistence.Repos;
 using ECommerce.Persistence.Seed;
 using ECommerce.Persistence.UOW;
@@ -76,7 +75,7 @@ namespace Talabat_Delivery
                 return ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("RedisConnection"));
             });
 
-            builder.Services.AddIdentity<ECommerce.Domain.Models.Identity.ApplicationUser, IdentityRole>().AddEntityFrameworkStores<StoreIdentityDbContext>();
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<StoreIdentityDbContext>();
 
 
             var app = builder.Build();
