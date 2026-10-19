@@ -3,6 +3,7 @@ using ECommerce.Domain.Exceptions;
 using ECommerce.Domain.Models.Identity;
 using ECommerce.Shared.Dtos.IdentityDtos;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,12 @@ namespace ECommerce.Service.Services
     public class AuthenticationService : IAuthenticationService
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IConfiguration configuration;
 
-        public AuthenticationService(UserManager<ApplicationUser> userManager)
+        public AuthenticationService(UserManager<ApplicationUser> userManager , IConfiguration configuration)
         {
             this.userManager = userManager;
+            this.configuration = configuration;
         }
         public async Task<UserDto> LoginAsync(LoginDto dto)
         {
@@ -91,7 +94,7 @@ namespace ECommerce.Service.Services
                 UserClaims.Add(new Claim(ClaimTypes.Role , Role));
             }
 
-            var SecurityKey = "MySecurityKey";
+            var SecurityKey = configuration.GetSection("JWTOptions")["SecurityKey"];
 
             var Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SecurityKey));
 
@@ -99,8 +102,8 @@ namespace ECommerce.Service.Services
 
             var Token = new JwtSecurityToken
                 (
-                    issuer : "MyIssuer",
-                    audience : "MyAudience",
+                    issuer : configuration.GetSection("JWTOptions")["SecurityKey"],
+                    audience : configuration.GetSection("JWTOptions")["Audience"],
                     claims : UserClaims,
                     expires : DateTime.Now.AddDays(2),
                     signingCredentials : Creds
