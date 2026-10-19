@@ -41,9 +41,31 @@ namespace ECommerce.Service.Services
 
         }
 
-        public Task<UserDto> RegisterAsync(RegisterDto dto)
+        public async Task<UserDto> RegisterAsync(RegisterDto dto)
         {
-            throw new NotImplementedException();
+            var User = new ApplicationUser()
+            {
+                DisplayName = dto.DisplayName,
+                Email = dto.Email,
+                PhoneNumber = dto.PhoneNumber,
+                UserName = dto.UserName
+            };
+
+            var Result = await userManager.CreateAsync(User , dto.Password);
+
+            if (Result.Succeeded)
+            {
+                return new UserDto()
+                {
+                    Email = User.Email,
+                    DisplayName = User.Email,
+                    Token = "Token - ToDo."
+                };
+            }
+            else
+            {
+                 
+            }
         }
     }
 }
