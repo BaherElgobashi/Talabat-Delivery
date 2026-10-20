@@ -85,9 +85,13 @@ namespace ECommerce.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> CheckEmailAsync(string Email)
+        public async Task<bool> CheckEmailAsync(string Email)
         {
-            throw new NotImplementedException();
+            var User = await userManager.FindByEmailAsync(Email);
+
+            //return User is not null;
+            return User is null ? false : true;
+            
         }
 
         public Task<AddressDto> GetCurrentUserAddress(string Email)
