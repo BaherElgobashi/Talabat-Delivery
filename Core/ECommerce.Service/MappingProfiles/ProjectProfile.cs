@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ECommerce.Domain.Models.Baskets;
+using ECommerce.Domain.Models.Identity;
 using ECommerce.Domain.Models.Products;
 using ECommerce.Shared.Dtos.Basket_Dtos;
+using ECommerce.Shared.Dtos.IdentityDtos;
 using ECommerce.Shared.Dtos.ProductDtos;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -29,6 +31,8 @@ namespace ECommerce.Service.MappingProfiles
 
             CreateMap<CustomerBasket , BasketDto>().ReverseMap();
             CreateMap<BasketItem , BasketItemDto>().ReverseMap();
+
+            CreateMap<Address , AddressDto>().ReverseMap();
         }
     }
 }
