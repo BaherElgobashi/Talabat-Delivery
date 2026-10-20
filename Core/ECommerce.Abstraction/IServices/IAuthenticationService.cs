@@ -11,5 +11,14 @@ namespace ECommerce.Abstraction.IServices
     {
         Task<UserDto> LoginAsync(LoginDto dto);
         Task<UserDto> RegisterAsync(RegisterDto dto);
+
+        Task<bool> CheckEmailAsync(string Email);
+
+        Task<AddressDto> GetCurrentUserAddress(string Email);
+
+        Task<AddressDto> UpdateCurrentUserAddressAsync(string Email , AddressDto dto);
+
+        Task<UserDto> GetCurrentUserAsync(string Email);
+
     }
 }
