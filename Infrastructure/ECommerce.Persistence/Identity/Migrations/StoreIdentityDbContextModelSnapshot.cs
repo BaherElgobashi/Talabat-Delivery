@@ -22,7 +22,7 @@ namespace ECommerce.Persistence.Identity.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ECommerce.Persistence.Identity.Models.Address", b =>
+            modelBuilder.Entity("ECommerce.Domain.Models.Identity.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,6 +46,10 @@ namespace ECommerce.Persistence.Identity.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -58,7 +62,7 @@ namespace ECommerce.Persistence.Identity.Migrations
                     b.ToTable("Addressess", (string)null);
                 });
 
-            modelBuilder.Entity("ECommerce.Persistence.Identity.Models.ApplicationUser", b =>
+            modelBuilder.Entity("ECommerce.Domain.Models.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -169,11 +173,11 @@ namespace ECommerce.Persistence.Identity.Migrations
                     b.ToTable("UserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("ECommerce.Persistence.Identity.Models.Address", b =>
+            modelBuilder.Entity("ECommerce.Domain.Models.Identity.Address", b =>
                 {
-                    b.HasOne("ECommerce.Persistence.Identity.Models.ApplicationUser", "User")
+                    b.HasOne("ECommerce.Domain.Models.Identity.ApplicationUser", "User")
                         .WithOne("Address")
-                        .HasForeignKey("ECommerce.Persistence.Identity.Models.Address", "UserId")
+                        .HasForeignKey("ECommerce.Domain.Models.Identity.Address", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -188,14 +192,14 @@ namespace ECommerce.Persistence.Identity.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ECommerce.Persistence.Identity.Models.ApplicationUser", null)
+                    b.HasOne("ECommerce.Domain.Models.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ECommerce.Persistence.Identity.Models.ApplicationUser", b =>
+            modelBuilder.Entity("ECommerce.Domain.Models.Identity.ApplicationUser", b =>
                 {
                     b.Navigation("Address");
                 });
