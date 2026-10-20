@@ -1,8 +1,10 @@
-﻿using ECommerce.Abstraction.IServices;
+﻿using AutoMapper;
+using ECommerce.Abstraction.IServices;
 using ECommerce.Domain.Exceptions;
 using ECommerce.Domain.Models.Identity;
 using ECommerce.Shared.Dtos.IdentityDtos;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -19,11 +21,13 @@ namespace ECommerce.Service.Services
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IConfiguration configuration;
+        private readonly IMapper mapper;
 
-        public AuthenticationService(UserManager<ApplicationUser> userManager , IConfiguration configuration)
+        public AuthenticationService(UserManager<ApplicationUser> userManager , IConfiguration configuration , IMapper mapper)
         {
             this.userManager = userManager;
             this.configuration = configuration;
+            this.mapper = mapper;
         }
 
         
@@ -80,9 +84,27 @@ namespace ECommerce.Service.Services
             }
         }
 
-        public Task<AddressDto> UpdateCurrentUserAddressAsync(string Email, AddressDto dto)
+        public async Task<AddressDto> UpdateCurrentUserAddressAsync(string Email, AddressDto dto)
         {
-            throw new NotImplementedException();
+            var User = await userManager.Users.Include(u => u.Address).FirstOrDefaultAsync(e => e.Email == Email)
+                            ?? throw new UserNotFound(Email);
+
+            if(User.Address is not null)
+            {
+                User.Address.Street = dto.Street;
+                User.Address.City = dto.City;
+                User.Address.Country = dto.Country;
+                User.Address.FirstName = dto.FirstName;
+                User.Address.LastName = dto.LastName;
+            }
+            else
+            {
+                User.Address = mapper.Map< AddressDto, Address>(dto);
+            }
+
+            await userManager.UpdateAsync(User);
+
+            return mapper.Map<Address,AddressDto>(User.Address);
         }
 
         public async Task<bool> CheckEmailAsync(string Email)
@@ -94,14 +116,37 @@ namespace ECommerce.Service.Services
             
         }
 
-        public Task<AddressDto> GetCurrentUserAddress(string Email)
+        public async Task<AddressDto> GetCurrentUserAddressAsync(string Email)
         {
-            throw new NotImplementedException();
+            var User = await userManager.Users.Include(u => u.Address).FirstOrDefaultAsync(e => e.Email ==Email);
+
+            if(User is not null)
+            {
+                return mapper.Map<Address , AddressDto>(User.Address);
+            }
+            else
+            {
+                throw new AddressNotFoundException(User.DisplayName);
+            }
         }
 
-        public Task<UserDto> GetCurrentUserAsync(string Email)
+        public async Task<UserDto> GetCurrentUserAsync(string Email)
         {
-            throw new NotImplementedException();
+            var User = await userManager.FindByEmailAsync(Email);   
+            if(User is not null)
+            {
+                return new UserDto()
+                {
+                    DisplayName = User.DisplayName,
+                    Email = User.Email,
+                    Token = await CreateTokenAsync(User),
+
+                };
+            }
+            else
+            {
+                throw new UserNotFound(Email);
+            }
         }
 
 

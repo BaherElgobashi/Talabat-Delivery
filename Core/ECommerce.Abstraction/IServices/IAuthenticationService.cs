@@ -14,7 +14,7 @@ namespace ECommerce.Abstraction.IServices
 
         Task<bool> CheckEmailAsync(string Email);
 
-        Task<AddressDto> GetCurrentUserAddress(string Email);
+        Task<AddressDto> GetCurrentUserAddressAsync(string Email);
 
         Task<AddressDto> UpdateCurrentUserAddressAsync(string Email , AddressDto dto);
 

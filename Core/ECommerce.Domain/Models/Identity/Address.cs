@@ -13,6 +13,7 @@ namespace ECommerce.Domain.Models.Identity
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public string City { get; set; } = null!;
+        public string Street { get; set; }
         public string Country { get; set; } = null!;
         public ApplicationUser? User { get; set; }
 
