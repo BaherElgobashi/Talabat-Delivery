@@ -25,6 +25,9 @@ namespace ECommerce.Service.Services
             this.userManager = userManager;
             this.configuration = configuration;
         }
+
+        
+
         public async Task<UserDto> LoginAsync(LoginDto dto)
         {
             var User = await userManager.FindByEmailAsync(dto.Email) ?? throw new UserNotFound(dto.Email);
@@ -75,6 +78,26 @@ namespace ECommerce.Service.Services
                 var Errors = Result.Errors.Select(e => e.Description).ToList();
                 throw new BadRequestException(Errors);
             }
+        }
+
+        public Task<AddressDto> UpdateCurrentUserAddressAsync(string Email, AddressDto dto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> CheckEmailAsync(string Email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<AddressDto> GetCurrentUserAddress(string Email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<UserDto> GetCurrentUserAsync(string Email)
+        {
+            throw new NotImplementedException();
         }
 
 
