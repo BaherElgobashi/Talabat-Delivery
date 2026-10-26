@@ -9,6 +9,10 @@ namespace ECommerce.Domain.Models.Orders
 {
     public class Order : BaseEntity<Guid>
     {
+        public Order()
+        {
+            
+        }
         public Order(string userEmail, OrderAddress address, DeliveryMethod deliveryMethod, ICollection<OrderItem> items, decimal subTotal)
         {
             UserEmail = userEmail;
