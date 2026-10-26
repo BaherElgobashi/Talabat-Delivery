@@ -72,7 +72,10 @@ namespace ECommerce.Persistence.Seed
                 }
             }
 
-            
+            if (!context.DeliveryMethods.Any())
+            {
+
+            }
 
 
 
