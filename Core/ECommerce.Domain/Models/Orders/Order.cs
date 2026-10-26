@@ -9,6 +9,15 @@ namespace ECommerce.Domain.Models.Orders
 {
     public class Order : BaseEntity<Guid>
     {
+        public Order(string userEmail, OrderAddress address, DeliveryMethod deliveryMethod, ICollection<OrderItem> items, decimal subTotal)
+        {
+            UserEmail = userEmail;
+            Address = address;
+            DeliveryMethod = deliveryMethod;
+            Items = items;
+            SubTotal = subTotal;
+        }
+
         public string UserEmail { get; set; } = null!;
         public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
         public OrderAddress Address { get; set; } = null!;
