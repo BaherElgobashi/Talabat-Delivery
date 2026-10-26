@@ -40,8 +40,9 @@ namespace ECommerce.Service.MappingProfiles
 
             CreateMap<AddressDto , OrderAddress>().ReverseMap();
 
-            CreateMap<Order , OrderToReturnDto>()
-                .ForMember(D => D.DeliveryMethod , options => options.MapFrom(src => src.DeliveryMethod.ShortName));
+            CreateMap<Order, OrderToReturnDto>()
+                .ForMember(D => D.DeliveryMethod, options => options.MapFrom(src => src.DeliveryMethod.ShortName))
+                .ForMember(D => D.OrderState, options => options.MapFrom(src => src.OrderStatus));
 
             CreateMap<OrderItem , OrderItemDto>()
                 .ForMember(src => src.ProductName , options => options.MapFrom(src => src.Product.ProductName))
