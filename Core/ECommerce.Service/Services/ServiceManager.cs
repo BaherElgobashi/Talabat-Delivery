@@ -21,6 +21,9 @@ namespace ECommerce.Service.Services
 
         private readonly Lazy<IAuthenticationService> LazyAuthenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(userManager , configuration , mapper));
         public IAuthenticationService authenticationService => LazyAuthenticationService.Value;
+
+        private readonly Lazy<IOrderService> LazyOrderService = new Lazy<IOrderService>(() => new OrderService(mapper, basketRepository, unitOfWork));
+        public IOrderService orderServices => LazyOrderService.Value;
     }
 
     //public class ServiceManager : IServiceManager
