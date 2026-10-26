@@ -18,7 +18,7 @@ namespace ECommerce.Shared.Dtos.OrderDtos
 
         public AddressDto Address { get; set; } = null!;
 
-        public string OrderSate { get; set; } = null!;
+        public string OrderState { get; set; } = null!;
 
         public ICollection<OrderItemDto> Items { get; set; } = [];
 
