@@ -45,7 +45,7 @@ namespace ECommerce.Service.MappingProfiles
 
             CreateMap<OrderItem , OrderItemDto>()
                 .ForMember(src => src.ProductName , options => options.MapFrom(src => src.Product.ProductName))
-                .ForMember(src => src.ProductPictureUrl , options => options.MapFrom(src => src.Product.ProductUrl));
+                .ForMember(src => src.ProductPictureUrl , options => options.MapFrom(new OrderPictureResolver(configuration)));
 
 
 
