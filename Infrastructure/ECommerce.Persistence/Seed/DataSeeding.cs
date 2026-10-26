@@ -1,5 +1,6 @@
 ﻿using ECommerce.Domain.Contratcs.Seed;
 using ECommerce.Domain.Models.Identity;
+using ECommerce.Domain.Models.Orders;
 using ECommerce.Domain.Models.Products;
 using ECommerce.Persistence.Contexts;
 
@@ -74,7 +75,14 @@ namespace ECommerce.Persistence.Seed
 
             if (!context.DeliveryMethods.Any())
             {
+                var DeliveryData = await File.ReadAllTextAsync(@"..\Infrastructure\ECommerce.Persistence\Data\delivery.json");
 
+                var DeliveryMethods = JsonSerializer.Deserialize<List<DeliveryMethod>>(DeliveryData);
+
+                if (DeliveryMethods is not null && DeliveryMethods.Any()) 
+                {
+                    context.DeliveryMethods.AddRange(DeliveryMethods);
+                }
             }
 
 
