@@ -72,6 +72,10 @@ namespace ECommerce.Persistence.Seed
                 }
             }
 
+            
+
+
+
             context.SaveChanges();
         }
 
