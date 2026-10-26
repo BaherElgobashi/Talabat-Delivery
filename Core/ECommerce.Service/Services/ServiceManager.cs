@@ -13,17 +13,25 @@ namespace ECommerce.Service.Services
     public class ServiceManager(IUnitOfWork unitOfWork, IMapper mapper , IBasketRepository basketRepository , UserManager<ApplicationUser>userManager , IConfiguration configuration) : IServiceManager
     {
 
+        #region Product.
         private readonly Lazy<IProductServices> LazyProductServices = new Lazy<IProductServices>(() => new ProductServices(unitOfWork, mapper));
         public IProductServices ProductServices => LazyProductServices.Value;
+        #endregion
 
-        private readonly Lazy<IBasketService> LazyBasketService = new Lazy<IBasketService>(() => new BasketServices (basketRepository, mapper));
+        #region Basket.
+        private readonly Lazy<IBasketService> LazyBasketService = new Lazy<IBasketService>(() => new BasketServices(basketRepository, mapper));
         public IBasketService BasketServices => LazyBasketService.Value;
+        #endregion
 
-        private readonly Lazy<IAuthenticationService> LazyAuthenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(userManager , configuration , mapper));
+        #region Authentication.
+        private readonly Lazy<IAuthenticationService> LazyAuthenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(userManager, configuration, mapper));
         public IAuthenticationService authenticationService => LazyAuthenticationService.Value;
+        #endregion
 
+        #region Order.
         private readonly Lazy<IOrderService> LazyOrderService = new Lazy<IOrderService>(() => new OrderService(mapper, basketRepository, unitOfWork));
-        public IOrderService orderServices => LazyOrderService.Value;
+        public IOrderService orderServices => LazyOrderService.Value; 
+        #endregion
     }
 
     //public class ServiceManager : IServiceManager
