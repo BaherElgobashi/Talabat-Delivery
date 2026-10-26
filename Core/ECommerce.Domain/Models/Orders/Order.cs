@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Domain.Models.Orders
 {
-    public class Order : BaseEntity<int>
+    public class Order : BaseEntity<Guid>
     {
         public string UserEmail { get; set; } = null!;
         public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
