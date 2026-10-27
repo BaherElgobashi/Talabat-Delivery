@@ -12,7 +12,10 @@ namespace ECommerce.Service.Services
     {
         public Task<BasketDto> CreateUpdatePaymentIntentAsync(string BasketId)
         {
-            throw new NotImplementedException();
+            // 1. Configure Stripe : Install Stripe.Net.
+            // 2. Get Basket By BasketId.
+            // 3. Get Amount - GetProduct + DeliveryMethod Cost.
+            // 4. Create Payment Intent [Create - Update].
         }
     }
 }
