@@ -27,11 +27,29 @@ namespace ECommerce.Presentation.Controllers
         }
 
         [HttpGet("DeliveryMethods")]
-        public async Task<IEnumerable<DeliveryMethodDto>> GetAllDeliveryMethods()
+        public async Task<ActionResult<IEnumerable<DeliveryMethodDto>>> GetAllDeliveryMethods()
         {
             var DeliveryMethods = await serviceManager.orderServices.GetAllDeliveryMethodsAsync();
 
             return Ok(DeliveryMethods);
+        }
+
+        [HttpGet("AlOrders")]
+        public async Task<ActionResult<IEnumerable<OrderToReturnDto>>> GetAllOrdersForUser()
+        {
+            var Email = User.FindFirstValue(ClaimTypes.Email);
+
+            var Orders = await serviceManager.orderServices.GetAllOrdersAsync(Email);
+
+            return Ok(Orders);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<OrderToReturnDto>> GetOrderById(Guid OrderId)
+        {
+            var Order = await serviceManager.orderServices.GetOrderByIdAsync(OrderId);
+
+            return Ok(Order);
         }
     }
 }
