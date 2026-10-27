@@ -17,5 +17,10 @@ namespace ECommerce.Service.Specifications
 
             AddOrderByDesc(O => O.OrderDate);
         }
+        public OrderSpecifications(Guid Id) : base(O => O.Id == Id)
+        {
+            AddIncludes(O => O.DeliveryMethod);
+            AddIncludes(O => O.Items);
+        }
     }
 }
