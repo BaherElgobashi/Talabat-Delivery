@@ -68,5 +68,20 @@ namespace ECommerce.Service.Services
             // Convert Order to OrderToReturnDto to show it to the User.
             return mapper.Map<Order , OrderToReturnDto>(Order);
         }
+
+        public Task<IEnumerable<DeliveryMethodDto>> GetAllDeliveryMethods()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<OrderToReturnDto>> GetAllOrdersAsync(string Email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<OrderToReturnDto> GetOrderByIdAsync(Guid Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
