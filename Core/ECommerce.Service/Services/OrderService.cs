@@ -86,9 +86,13 @@ namespace ECommerce.Service.Services
             return mapper.Map<IEnumerable<Order> , IEnumerable<OrderToReturnDto>>(Orders);
         }
 
-        public Task<OrderToReturnDto> GetOrderByIdAsync(Guid Id)
+        public async Task<OrderToReturnDto> GetOrderByIdAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            var Spec = new OrderSpecifications(Id);
+
+            var Order = await unitOfWork.GetRepository<Order ,Guid>().GetByIdWithSpecificationAsync(Spec);
+
+            return mapper.Map<Order , OrderToReturnDto>(Order);
         }
     }
 }
