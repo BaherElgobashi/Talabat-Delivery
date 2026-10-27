@@ -40,7 +40,7 @@ namespace ECommerce.Service.Services
 
             Basket.ShippingPrice = DeliveryMethod.Price;
 
-            var BasketAmount = (long)(Basket.Items.Sum(item => item.Quantity * item.Price) + DeliveryMethod.Price) * 100;
+            var BasketAmount = (long)((Basket.Items.Sum(item => item.Quantity * item.Price) + DeliveryMethod.Price) * 100);
 
             // 4. Create Payment Intent [Create - Update].
             var PaymentService = new PaymentIntentService();
@@ -53,7 +53,7 @@ namespace ECommerce.Service.Services
                 {
                     Amount = BasketAmount,
                     Currency = "USD",
-                    AllowedPaymentMethodTypes = ["Card"]
+                    AllowedPaymentMethodTypes = ["card"]
                 };
 
                 var PaymentIntent = await PaymentService.CreateAsync(options);
