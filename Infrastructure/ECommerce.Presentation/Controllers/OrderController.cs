@@ -34,7 +34,7 @@ namespace ECommerce.Presentation.Controllers
             return Ok(DeliveryMethods);
         }
 
-        [HttpGet("AlOrders")]
+        [HttpGet("AllOrders")]
         public async Task<ActionResult<IEnumerable<OrderToReturnDto>>> GetAllOrdersForUser()
         {
             var Email = User.FindFirstValue(ClaimTypes.Email);
