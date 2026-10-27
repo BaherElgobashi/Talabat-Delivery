@@ -48,7 +48,7 @@ namespace ECommerce.Service.MappingProfiles
                 .ForMember(src => src.ProductName , options => options.MapFrom(src => src.Product.ProductName))
                 .ForMember(src => src.ProductPictureUrl , options => options.MapFrom(new OrderPictureResolver(configuration)));
 
-            CreateMap<DeliveryMethod, DeliveryMethod>().ReverseMap();
+            CreateMap<DeliveryMethod, DeliveryMethodDto>().ReverseMap();
 
 
 

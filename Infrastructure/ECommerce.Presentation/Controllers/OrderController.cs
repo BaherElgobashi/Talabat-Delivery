@@ -25,5 +25,13 @@ namespace ECommerce.Presentation.Controllers
 
             return Ok(Order);
         }
+
+        [HttpGet("DeliveryMethods")]
+        public async Task<IEnumerable<DeliveryMethodDto>> GetAllDeliveryMethods()
+        {
+            var DeliveryMethods = await serviceManager.orderServices.GetAllDeliveryMethodsAsync();
+
+            return Ok(DeliveryMethods);
+        }
     }
 }
