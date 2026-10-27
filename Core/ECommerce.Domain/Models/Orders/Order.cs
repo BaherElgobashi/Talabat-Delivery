@@ -35,5 +35,7 @@ namespace ECommerce.Domain.Models.Orders
         {
             return SubTotal + DeliveryMethod.Price;
         }
+
+        public string PaymentIntentId { get; set; }
     }
 }
