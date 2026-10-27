@@ -35,8 +35,10 @@ namespace ECommerce.Service.Services
 
         #endregion
 
-        private readonly Lazy<IPaymentService> LazyPaymentService = new Lazy<IPaymentService>(() => new PaymentService(configuration , basketRepository ,unitOfWork , mapper));
-        public IPaymentService paymentService => LazyPaymentService.Value;
+        #region Payment.
+        private readonly Lazy<IPaymentService> LazyPaymentService = new Lazy<IPaymentService>(() => new PaymentService(configuration, basketRepository, unitOfWork, mapper));
+        public IPaymentService paymentService => LazyPaymentService.Value; 
+        #endregion
     }
 
     //public class ServiceManager : IServiceManager
