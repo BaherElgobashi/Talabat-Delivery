@@ -16,7 +16,7 @@ namespace ECommerce.Abstraction.IServices
         Task<OrderToReturnDto> CreateOrderAsync(OrderDto orderDto , string Email);
 
         // Get All Delivery Methods.
-        Task<IEnumerable<DeliveryMethodDto>> GetAllDeliveryMethods();
+        Task<IEnumerable<DeliveryMethodDto>> GetAllDeliveryMethodsAsync();
 
         // Get All Orders For Current Users.
         Task<IEnumerable<OrderToReturnDto>> GetAllOrdersAsync(string Email);

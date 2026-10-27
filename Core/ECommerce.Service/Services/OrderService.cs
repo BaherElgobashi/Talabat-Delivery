@@ -69,9 +69,11 @@ namespace ECommerce.Service.Services
             return mapper.Map<Order , OrderToReturnDto>(Order);
         }
 
-        public Task<IEnumerable<DeliveryMethodDto>> GetAllDeliveryMethods()
+        public async Task<IEnumerable<DeliveryMethodDto>> GetAllDeliveryMethodsAsync()
         {
-            throw new NotImplementedException();
+            var DeliveryMethods = await unitOfWork.GetRepository<DeliveryMethod, int>().GetAllAsync();
+
+            return mapper.Map<IEnumerable<DeliveryMethod> , IEnumerable<DeliveryMethodDto>>(DeliveryMethods);
         }
 
         public Task<IEnumerable<OrderToReturnDto>> GetAllOrdersAsync(string Email)
