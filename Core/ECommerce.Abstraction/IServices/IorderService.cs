@@ -15,5 +15,15 @@ namespace ECommerce.Abstraction.IServices
 
         Task<OrderToReturnDto> CreateOrderAsync(OrderDto orderDto , string Email);
 
+        // Get All Delivery Methods.
+        Task<IEnumerable<DeliveryMethodDto>> GetAllDeliveryMethods();
+
+        // Get All Orders For Current Users.
+        Task<IEnumerable<OrderToReturnDto>> GetAllOrdersAsync(string Email);
+
+        // Get Specific Order For Current User.
+        Task<OrderToReturnDto> GetOrderByIdAsync(Guid Id);
+
+
     }
 }
