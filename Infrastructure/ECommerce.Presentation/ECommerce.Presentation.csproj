@@ -14,8 +14,4 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App"></FrameworkReference>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Attributes\" />
-	</ItemGroup>
-
 </Project>
