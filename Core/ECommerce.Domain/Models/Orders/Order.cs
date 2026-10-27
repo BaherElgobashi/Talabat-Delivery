@@ -13,13 +13,14 @@ namespace ECommerce.Domain.Models.Orders
         {
             
         }
-        public Order(string userEmail, OrderAddress address, DeliveryMethod deliveryMethod, ICollection<OrderItem> items, decimal subTotal)
+        public Order(string userEmail, OrderAddress address, DeliveryMethod deliveryMethod, ICollection<OrderItem> items, decimal subTotal , string paymentIntendId)
         {
             UserEmail = userEmail;
             Address = address;
             DeliveryMethod = deliveryMethod;
             Items = items;
             SubTotal = subTotal;
+            PaymentIntentId = paymentIntendId;
         }
 
         public string UserEmail { get; set; } = null!;

@@ -26,6 +26,23 @@ namespace ECommerce.Service.Services
             // 2.Get Basket.
             var Basket = await basketRepository.GetBasketAsync(orderDto.BasketId) ?? throw new BasketNotFoundException(orderDto.BasketId);
 
+            ///////////////////////////////////////////////////////////////////
+            // New Section For Payment.
+            ArgumentNullException.ThrowIfNullOrEmpty(Basket.PaymentIntentId);
+
+            var OrderRepo = unitOfWork.GetRepository<Order , Guid>();
+
+            var Spec = new OrderWithPaymentIntentSpecifications(Basket.PaymentIntentId);
+
+            var ExistedOrder = await OrderRepo.GetByIdWithSpecificationAsync(Spec);
+
+            if (ExistedOrder is not null) OrderRepo.Delete(ExistedOrder);
+
+            // End Section For Payment.
+            ///////////////////////////////////////////////////////////////////
+
+
+
             // 3.Create OrderItems List.
             List<OrderItem> orderItems = [];
 
@@ -58,7 +75,7 @@ namespace ECommerce.Service.Services
             var SubTotal = orderItems.Sum(I => I.Quantity * I.Price);
 
             // Prepare The Whole Order using order constructor.
-            var Order = new Order(Email , OrderAddress , DeliveryMethod , orderItems , SubTotal);
+            var Order = new Order(Email , OrderAddress , DeliveryMethod , orderItems , SubTotal , Basket.PaymentIntentId);
 
             // Add Order inside the Table.
             unitOfWork.GetRepository<Order,Guid>().Add(Order);
