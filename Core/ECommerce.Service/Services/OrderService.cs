@@ -5,6 +5,7 @@ using ECommerce.Domain.Contratcs.UOW;
 using ECommerce.Domain.Exceptions;
 using ECommerce.Domain.Models.Orders;
 using ECommerce.Domain.Models.Products;
+using ECommerce.Service.Specifications;
 using ECommerce.Shared.Dtos.IdentityDtos;
 using ECommerce.Shared.Dtos.OrderDtos;
 using System;
@@ -76,9 +77,13 @@ namespace ECommerce.Service.Services
             return mapper.Map<IEnumerable<DeliveryMethod> , IEnumerable<DeliveryMethodDto>>(DeliveryMethods);
         }
 
-        public Task<IEnumerable<OrderToReturnDto>> GetAllOrdersAsync(string Email)
+        public async Task<IEnumerable<OrderToReturnDto>> GetAllOrdersAsync(string Email)
         {
-            throw new NotImplementedException();
+            var Spec = new OrderSpecifications(Email);
+
+            var Orders = await unitOfWork.GetRepository<Order , Guid>().GetAllWithSpecificationAsync(Spec);
+
+            return mapper.Map<IEnumerable<Order> , IEnumerable<OrderToReturnDto>>(Orders);
         }
 
         public Task<OrderToReturnDto> GetOrderByIdAsync(Guid Id)
