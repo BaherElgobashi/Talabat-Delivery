@@ -177,7 +177,7 @@ namespace Talabat_Delivery
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCors();
+            app.UseCors("MyPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();
