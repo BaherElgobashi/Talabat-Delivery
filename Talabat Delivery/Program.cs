@@ -136,6 +136,20 @@ namespace Talabat_Delivery
             });
 
 
+            #region CORS.
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("MyPolicy", options =>
+                {
+                    options.AllowAnyHeader().AllowAnyMethod().WithOrigins(builder.Configuration["FrontendUrl"]);
+                });
+            });
+
+
+            #endregion
+
+
             var app = builder.Build();
 
             // Seed the database with initial data
