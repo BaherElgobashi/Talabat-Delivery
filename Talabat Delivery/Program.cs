@@ -162,11 +162,13 @@ namespace Talabat_Delivery
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseStaticFiles();
+            
             
 
             app.MapControllers();
