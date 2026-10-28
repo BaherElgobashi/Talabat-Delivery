@@ -5,6 +5,7 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RootNamespace>Talabat_Delivery</RootNamespace>
+		<UserSecretsId>7ce15d81-c1fa-435c-848e-1a358eb5c64b</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
