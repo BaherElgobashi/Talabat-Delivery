@@ -138,13 +138,13 @@ namespace Talabat_Delivery
 
             #region CORS.
 
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("MyPolicy", options =>
-                {
-                    options.AllowAnyHeader().AllowAnyMethod().WithOrigins(builder.Configuration["FrontendUrl"]);
-                });
-            });
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddPolicy("MyPolicy", options =>
+            //    {
+            //        options.AllowAnyHeader().AllowAnyMethod().WithOrigins(builder.Configuration["FrontendUrl"]);
+            //    });
+            //});
 
 
             #endregion
@@ -177,7 +177,7 @@ namespace Talabat_Delivery
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCors("MyPolicy");
+            //app.UseCors("MyPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();
